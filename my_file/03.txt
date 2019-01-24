@@ -1,0 +1,12 @@
+# update и если будут файлы для закачки
+{!! Form::open(['route' => ['post.update', $post->id], 'files'	=>	true, 'method'=>'put']) !!}
+
+value="{{old('title')}}"
+
+#Запуск сидера
+php artisan db:seed --class=UsersTableSeeder
+если выполнить
+php artisan db:seed ->выполнится дефолтный seed DatabaseSeed (поэтому можно все сиды заполнять в нем и выполнить последовательно)
+
+#Синхронизация тегов
+$post->tags()->sync($request->tags);
