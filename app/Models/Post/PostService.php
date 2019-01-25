@@ -28,5 +28,4 @@ class PostService
         $post = Post::findOrFail($id);
         $post->delete();
     }
-
 }

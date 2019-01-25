@@ -76,4 +76,5 @@ class Post extends Model
         return $this->tags->isEmpty() ? 'нет тегов' : implode(', ', $this->tags->pluck('title')->all());
     }
 
+
 }

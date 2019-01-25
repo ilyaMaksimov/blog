@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35d20121-e498-4261-83e6-307d9eec8f46" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/Entity/Image.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/my_file/questions.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/my_file/tasks.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/img/no-image.png" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Post/Post.php" afterPath="$PROJECT_DIR$/app/Models/Post/Post.php" />
       <change beforePath="$PROJECT_DIR$/app/Models/Post/PostService.php" afterPath="$PROJECT_DIR$/app/Models/Post/PostService.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/post/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/post/edit.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/post/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/post/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Admin/PostControllerTest.php" afterPath="$PROJECT_DIR$/tests/Feature/Admin/PostControllerTest.php" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/Model/PostTest.php" afterPath="$PROJECT_DIR$/tests/Unit/Model/PostTest.php" />
+      <change beforePath="$PROJECT_DIR$/my_file/tasks.txt" afterPath="$PROJECT_DIR$/my_file/tasks.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,7 +51,7 @@
       <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/post/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
+            <state relative-caret-position="0">
               <caret line="32" column="80" lean-forward="false" selection-start-line="32" selection-start-column="80" selection-end-line="32" selection-end-column="80" />
               <folding>
                 <marker date="1548407365772" expanded="true" signature="9:32" ph="..." />
@@ -132,11 +121,9 @@
       <file leaf-file-name="PostService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/Post/PostService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="16" column="3" lean-forward="false" selection-start-line="16" selection-start-column="3" selection-end-line="23" selection-end-column="5" />
-              <folding>
-                <element signature="e#35#56#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="72">
+              <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -154,7 +141,7 @@
       <file leaf-file-name="PostController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
+            <state relative-caret-position="216">
               <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="e#46#92#0#PHP" expanded="true" />
@@ -163,31 +150,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tasks.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my_file/tasks.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Post.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Post.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Models/Post/Post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1314">
+            <state relative-caret-position="666">
               <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Image.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Image.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Entity/Image.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+            <state relative-caret-position="432">
+              <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -255,11 +232,11 @@
         <option value="$PROJECT_DIR$/tests/Unit/Model/PostTest.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/post/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/post/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Models/Post/PostService.php" />
-        <option value="$PROJECT_DIR$/app/Entity/Image.php" />
         <option value="$PROJECT_DIR$/tests/Unit/Entity/ImageTest.php" />
         <option value="$PROJECT_DIR$/app/Models/Post/Post.php" />
         <option value="$PROJECT_DIR$/my_file/questions.txt" />
+        <option value="$PROJECT_DIR$/app/Entity/Image.php" />
+        <option value="$PROJECT_DIR$/app/Models/Post/PostService.php" />
         <option value="$PROJECT_DIR$/my_file/tasks.txt" />
       </list>
     </option>
@@ -371,7 +348,7 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -586,7 +563,7 @@
       <workItem from="1548354568015" duration="13067000" />
       <workItem from="1548400291946" duration="8632000" />
       <workItem from="1548409810180" duration="692000" />
-      <workItem from="1548410514438" duration="10000" />
+      <workItem from="1548410514438" duration="354000" />
     </task>
     <servers />
   </component>
@@ -623,7 +600,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94597000" />
+    <option name="totallyTimeSpent" value="94941000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -635,7 +612,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="260" y="20" width="1920" height="1040" extended-state="6" />
+    <frame x="260" y="20" width="1920" height="1040" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16915688" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -700,13 +677,8 @@
           <line>42</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php</url>
-          <line>4</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -961,7 +933,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/post/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
+        <state relative-caret-position="0">
           <caret line="32" column="80" lean-forward="false" selection-start-line="32" selection-start-column="80" selection-end-line="32" selection-end-column="80" />
           <folding>
             <marker date="1548407365772" expanded="true" signature="9:32" ph="..." />
@@ -1028,21 +1000,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Post/Post.php">
+    <entry file="file://$PROJECT_DIR$/tests/Unit/Entity/ImageTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1314">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="647">
+          <caret line="46" column="61" lean-forward="true" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Post/PostService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="16" column="3" lean-forward="false" selection-start-line="16" selection-start-column="3" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="e#35#56#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="72">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Entity/Image.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="45" lean-forward="false" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/fb580bba/b2c617a8-e89c-4da6-8670-4591b2bb0ac4/my_blog.posts">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1054,23 +1038,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/Entity/ImageTest.php">
+    <entry file="file://$PROJECT_DIR$/my_file/tasks.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="46" column="61" lean-forward="true" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/fb580bba/b2c617a8-e89c-4da6-8670-4591b2bb0ac4/my_blog.posts">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+        <state relative-caret-position="18">
+          <caret line="1" column="21" lean-forward="true" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/PostController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
+        <state relative-caret-position="216">
           <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="e#46#92#0#PHP" expanded="true" />
@@ -1078,18 +1056,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my_file/tasks.txt">
+    <entry file="file://$PROJECT_DIR$/app/Models/Post/Post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Entity/Image.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        <state relative-caret-position="666">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>
