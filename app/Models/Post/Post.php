@@ -3,7 +3,9 @@
 namespace App\Models\Post;
 
 use App\Models\Category\Category;
+
 use App\Models\Comment\Comment;
+
 use App\Models\Tag\Tag;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
@@ -75,6 +77,7 @@ class Post extends Model
     {
         return $this->tags->isEmpty() ? 'нет тегов' : implode(', ', $this->tags->pluck('title')->all());
     }
+
 
 
 }
