@@ -30,26 +30,13 @@
                         </div>
 
                         <div class="form-group">
-                            <img src="../assets/dist/img/boxed-bg.jpg" alt="" class="img-responsive" width="200">
+                            <img src="{{\App\Entity\Image::getPath($post->image)}}" alt="" class="img-responsive" width="200">
                             <label for="exampleInputFile">Лицевая картинка</label>
-                            <input type="file" id="exampleInputFile">
+                            <input type="file" id="exampleInputFile" name="image">
 
                             <p class="help-block">Какое-нибудь уведомление о форматах..</p>
                         </div>
-                        {{--        <div class="form-group">
-                                    <label>Категория</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">California</option>
 
-                                        @foreach($categories as $category)
-                                            <option>{{$category}}</option>
-
-
-                                        @endforeach
-
-                                    </select>
-                                </div>
-        --}}
                         <div class="form-group">
                             <label>Категория</label>
                             {{Form::select('category_id',

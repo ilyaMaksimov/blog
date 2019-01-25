@@ -1,0 +1,11 @@
+
+
+# Нормально так сохранять картинку?
+ public function update(Request $request, int $id)
+    {
+        /** @var Post $post */
+        $post = Post::findOrFail($id);
+        $post->image = Image::save($request->file('image'));
+        $post->update($request->except(['tags', 'image']));
+        $post->tags()->sync($request->tags);
+    }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Post;
 
+use App\Entity\Image;
 use Illuminate\Http\Request;
 
 class PostService
@@ -17,7 +18,8 @@ class PostService
     {
         /** @var Post $post */
         $post = Post::findOrFail($id);
-        $post->update($request->except('tags'));
+        $post->image = Image::save($request->file('image'));
+        $post->update($request->except(['tags', 'image']));
         $post->tags()->sync($request->tags);
     }
 

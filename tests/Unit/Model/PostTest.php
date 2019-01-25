@@ -56,5 +56,4 @@ class PostTest extends TestCase
         $this->assertEquals('нет тегов', $post->getTagsTitles());
     }
 
-
 }

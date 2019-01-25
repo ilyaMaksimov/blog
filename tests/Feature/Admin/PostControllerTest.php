@@ -90,7 +90,7 @@ class PostControllerTest extends TestCase
 
     /**
      * @todo подправить tags \image \is_featured \ views
-     * @test
+     * @test1
      */
     public function update_post()
     {

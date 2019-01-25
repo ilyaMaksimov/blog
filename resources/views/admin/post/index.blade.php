@@ -44,7 +44,7 @@
                             <td>{{$post->category->title}}</td>
                             <td>{{$post->getTagsTitles()}}</td>
                             <td>
-                                <img src="../assets/dist/img/boxed-bg.jpg" alt="" width="100">
+                                <img src="{{\App\Entity\Image::getPath($post->image)}}" alt="" class="img-responsive" width="100">
                             </td>
                             <td>
                                 <a href="{{route('post.edit', $post->id)}}" class="fa fa-pencil"></a>
