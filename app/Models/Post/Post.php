@@ -9,6 +9,9 @@ use App\Models\Comment\Comment;
 use App\Models\Tag\Tag;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
+use WindowsAzure\Table\Models\Query;
 
 /**
  * Class Post
@@ -26,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $image
  * @property string $created_at
  * @property string $updated_at
+ *
+ * @property Collection $tags
  * @package App\Models\Post
  */
 class Post extends Model
@@ -77,7 +82,4 @@ class Post extends Model
     {
         return $this->tags->isEmpty() ? 'нет тегов' : implode(', ', $this->tags->pluck('title')->all());
     }
-
-
-
 }

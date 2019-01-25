@@ -9,3 +9,16 @@
         $post->update($request->except(['tags', 'image']));
         $post->tags()->sync($request->tags);
     }
+
+# что писать? модель post
+@property Tag $tags
+
+#
+Что делать с подсвечиваемыми методами
+findOrFail
+
+# все ли в сервисный класс ?
+
+# Есть ли смысл если я убрал  сохранение и обновление в Repository
+
+# может Image-> remove() и update сделать статическим методом?

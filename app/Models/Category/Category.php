@@ -6,7 +6,6 @@ use App\Models\Post\Post;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
  * Class Category
  *

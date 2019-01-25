@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('admin', 'Admin\DashboardController@index')->name('dashboard');
-Route::resource('admin/category', 'Admin\CategoryController');
-Route::resource('admin/tag', 'Admin\TagController');
-Route::resource('admin/post', 'Admin\PostController');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('', 'DashboardController@index')->name('dashboard');
+    Route::resource('/category', 'CategoryController');
+    Route::resource('/tag', 'TagController');
+    Route::resource('/post', 'PostController');
+});

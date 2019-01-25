@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Category\Category;
-
 use App\Models\Post\Post;
 use App\Models\Post\PostService;
 use App\Models\Tag\Tag;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 
 class PostController extends Controller
 {
@@ -64,6 +64,4 @@ class PostController extends Controller
         $this->service->destroy($id);
         return redirect()->route('post.index');
     }
-
-
 }
