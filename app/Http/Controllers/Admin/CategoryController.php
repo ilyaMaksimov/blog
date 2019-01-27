@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\Category\StoreRequest;
 use App\Http\Requests\Admin\Category\UpdateRequest;
 use App\Models\Category\Category;
+use App\Models\Category\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -25,7 +26,7 @@ class CategoryController extends Controller
 
     public function store(StoreRequest $request)
     {
-        Category::create($request->all());
+        CategoryRepository::save($request);
         return redirect()->route('category.index');
     }
 

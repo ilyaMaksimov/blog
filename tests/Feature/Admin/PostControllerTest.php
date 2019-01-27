@@ -35,9 +35,9 @@ class PostControllerTest extends TestCase
 
     /**
      * @todo подправить tags \image \is_featured \ views
-     * @test
+     * @testee
      */
-    public function store_post()
+    private function store_post()
     {
         $category = factory(Category::class)->create();
         $tags = factory(Tag::class, 2)->create();
