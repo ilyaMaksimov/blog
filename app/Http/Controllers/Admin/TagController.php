@@ -6,6 +6,7 @@ use App\Http\Requests\Admin\Tag\StoreRequest;
 use App\Http\Requests\Admin\Tag\UpdateRequest;
 use App\Models\Tag\Tag;
 use App\Http\Controllers\Controller;
+use App\Models\Tag\TagRepository;
 
 class TagController extends Controller
 {
@@ -22,7 +23,7 @@ class TagController extends Controller
 
     public function store(StoreRequest $request)
     {
-        Tag::create($request->all());
+        TagRepository::save($request);
         return redirect()->route('tag.index');
     }
 
@@ -34,17 +35,13 @@ class TagController extends Controller
 
     public function update(UpdateRequest $request, $id)
     {
-        $tag = Tag::findOrFail($id);
-        $tag->update($request->all());
-
+        TagRepository::update($request, $id);
         return redirect()->route('tag.index');
     }
 
     public function destroy($id)
     {
-        $tag = Tag::findOrFail($id);
-        $tag->delete();
-
+        TagRepository::delete($id);
         return redirect()->route('tag.index');
     }
 }
