@@ -2,21 +2,25 @@
 
 namespace App\Models\Category;
 
-
-use App\Models\Post\Post;
-use Illuminate\Support\Facades\Request;
-
 class CategoryRepository
 {
-    public static function save( $request)
+    public static function save($request)
     {
-        $post = new Category();
-        $post->title = $request['title'];
-        $post->save();
+        $category = new Category();
+        $category->title = $request['title'];
+        $category->save();
     }
 
-    public static function update()
+    public static function update($request, $id)
     {
+        $category = Category::findOrFail($id);
+        $category->title = $request['title'];
+        $category->update();
+    }
 
+    public static function delete($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
     }
 }

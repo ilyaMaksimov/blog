@@ -44,16 +44,13 @@ class CategoryController extends Controller
 
     public function update(UpdateRequest $request, $id)
     {
-        $category = Category::findOrFail($id);
-        $category->update($request->all());
-
+        CategoryRepository::update($request, $id);
         return redirect()->route('category.index');
     }
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        CategoryRepository::delete($id);
         return redirect()->route('category.index');
     }
 }
