@@ -14,10 +14,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'required',
-            'description' => 'required',
+           /* 'title' => 'required|string',
+            'description' => 'required|string',
             'content' => 'required',
-            'image' => 'nullable|image'
+            'status' => 'boolean',
+            'is_featured' => 'boolean',
+            'date' => 'required|date',
+            'image' => 'nullable|image|mimes:jpeg,png'*/
         ];
     }
 }

@@ -11,20 +11,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ImageTest extends TestCase
 {
-   // use DatabaseTransactions;
-
     /**
      * @test
      */
-   /* private function returns_the_image_path()
+    public function returns_the_image_path()
     {
-
         $post = factory(Post::class)->make([
             'image' => $image = 'test.jpg'
         ]);
 
         $this->assertEquals(Image::SAVE_DIRECTORY.$image, Image::getPath($post->image));
-    }*/
+    }
 
     /**
      * @test

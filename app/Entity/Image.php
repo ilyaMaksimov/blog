@@ -65,6 +65,4 @@ class Image
     {
         $uploadedFile->storeAs(self::SAVE_DIRECTORY, $filename);
     }
-
-
 }
