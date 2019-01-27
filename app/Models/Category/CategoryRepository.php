@@ -23,4 +23,9 @@ class CategoryRepository
         $category = Category::findOrFail($id);
         $category->delete();
     }
+
+    public static function getArrayOfIdAndTitle()
+    {
+        return Category::select('title', 'id')->pluck('title', 'id');
+    }
 }

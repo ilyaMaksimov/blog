@@ -17,7 +17,7 @@ class UpdateRequest extends FormRequest
             'date' => 'required',
             'description' => 'required',
             'content' => 'required',
-            'image' => 'nullable|image'
+            //'image' => 'nullable|image'
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Category\Category;
+use App\Models\Category\CategoryRepository;
 use App\Models\Post\Post;
 use App\Models\Post\PostService;
 use App\Models\Tag\Tag;
@@ -29,8 +30,8 @@ class PostController extends Controller
 
     public function create()
     {
-        $categories = Category::pluck('title', 'id')->all();
-        $tags = Tag::pluck('title', 'id')->all();
+        $categories = CategoryRepository::getArrayOfIdAndTitle();
+        $tags = Tag::select('title', 'id')->pluck('title', 'id');
         return view('admin.post.create', compact('categories', 'tags'));
     }
 
@@ -48,8 +49,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        $categories = Category::pluck('title', 'id')->all();
-        $tags = Tag::pluck('title', 'id')->all();
+        $categories = CategoryRepository::getArrayOfIdAndTitle();
+        $tags = Tag::select('title', 'id')->pluck('title', 'id');
+
         return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 

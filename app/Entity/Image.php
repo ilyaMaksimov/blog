@@ -53,7 +53,7 @@ class Image
         }
     }
 
-    public function remove(string $image)
+    public function remove($image)
     {
         if ($image != null) {
             Storage::delete('uploads/' . $image);

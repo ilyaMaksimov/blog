@@ -11,10 +11,10 @@
                 </ol>
             </div>
         </section>
+
         <!-- Main content -->
         {!! Form::open(['route' => ['post.update', $post->id], 'files'	=>	true, 'method'=>'put']) !!}
         <section class="content">
-        {{--{{dd($categories)}}--}}
         <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
@@ -61,7 +61,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" id="datepicker" value="{{$post->date}}">
+                                <input type="text" class="form-control pull-right" id="datepicker" value="{{$post->date}}" name="date">
                             </div>
                             <!-- /.input group -->
                         </div>
