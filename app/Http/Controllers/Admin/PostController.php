@@ -10,6 +10,7 @@ use App\Models\Post\Post;
 use App\Models\Post\PostService;
 use App\Models\Tag\Tag;
 use App\Http\Controllers\Controller;
+use App\Models\Tag\TagRepository;
 use Illuminate\Support\Collection;
 
 class PostController extends Controller
@@ -31,7 +32,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = CategoryRepository::getArrayOfIdAndTitle();
-        $tags = Tag::select('title', 'id')->pluck('title', 'id');
+        $tags = TagRepository::getArrayOfIdAndTitle();
         return view('admin.post.create', compact('categories', 'tags'));
     }
 
@@ -50,7 +51,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = CategoryRepository::getArrayOfIdAndTitle();
-        $tags = Tag::select('title', 'id')->pluck('title', 'id');
+        $tags = TagRepository::getArrayOfIdAndTitle();
 
         return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }

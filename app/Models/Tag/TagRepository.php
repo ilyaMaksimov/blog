@@ -23,4 +23,9 @@ class TagRepository
         $tag = Tag::findOrFail($id);
         $tag->delete();
     }
+
+    public static function getArrayOfIdAndTitle()
+    {
+        return Tag::select('title', 'id')->pluck('title', 'id');
+    }
 }
