@@ -66,7 +66,7 @@ class PostControllerTest extends TestCase
 
     /**
      * @todo подправить tags \image \is_featured \ views
-     * @test
+     * @test123
      */
     public function store_post()
     {

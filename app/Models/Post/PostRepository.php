@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PostRepository
 {
-    public static function add( $request)
+    public static function add($request)
     {
         $image = new Image();
         $image->save($request['image']);
@@ -52,6 +52,7 @@ class PostRepository
     {
         $image = new Image();
 
+        /** @var Post $post */
         $post = Post::findOrFail($id);
         $image->remove($post->image);
         $post->delete();
