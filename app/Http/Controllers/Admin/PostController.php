@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Category\CategoryRepository;
 use App\Models\Post\Post;
 use App\Models\Post\PostRepository;
-use App\Models\Post\PostService;
 use App\Http\Controllers\Controller;
 use App\Models\Tag\TagRepository;
 

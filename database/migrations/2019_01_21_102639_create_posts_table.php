@@ -20,9 +20,9 @@ class CreatePostsTable extends Migration
             $table->text('description');
             $table->text('content');
             $table->integer('category_id')->nullable();
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->default(false);
             $table->integer('views')->default(0);
-            $table->boolean('is_featured')->default(0);
+            $table->boolean('is_featured')->default(false);
             $table->date('date')->default(\Carbon\Carbon::now());
             $table->string('image')->nullable();
             $table->timestamps();

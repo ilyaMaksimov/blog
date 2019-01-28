@@ -40,10 +40,14 @@ class Post extends Model
     const STATUS_DRAFT = 0;
     const STATUS_PUBLIC = 1;
 
+    const STANDARD_POST = 0;
+    const FEATURED_POST = 1;
+
     protected $guarded = [];
 
     protected $casts = [
-        'is_featured' => 'boolean'
+        'is_featured' => 'boolean',
+        'status' => 'boolean'
     ];
 
     /**
@@ -81,5 +85,21 @@ class Post extends Model
     public function getTagsTitles(): string
     {
         return $this->tags->isEmpty() ? 'нет тегов' : implode(', ', $this->tags->pluck('title')->all());
+    }
+
+    public function isPublic($status)
+    {
+        if ($status === null) {
+            return self::STATUS_DRAFT;
+        }
+        return self::STATUS_PUBLIC;
+    }
+
+    public function isFeatured($status)
+    {
+        if ($status === null) {
+            return self::STANDARD_POST;
+        }
+        return self::FEATURED_POST;
     }
 }

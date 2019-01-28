@@ -70,8 +70,7 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                              {{--  <input type="checkbox" class="minimal" name="is_featured" val>--}}
-                                {{ Form::checkbox('is_featured', 1,false,['class'=>'minimal']) }}
+                                <input type="checkbox" class="minimal" name="is_featured">
                             </label>
                             <label>
                                 Рекомендовать
@@ -81,7 +80,7 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                {{ Form::checkbox('status', 1,false,['class'=>'minimal']) }}
+                                <input type="checkbox" class="minimal" name="status">
                             </label>
                             <label>
                                 Черновик
@@ -98,7 +97,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Полный текст</label>
-                            <textarea name="content" id="" cols="30" rows="10" class="form-control"></textarea>
+                            <textarea name="content" id="" cols="30" rows="10" class="form-control">{{old('content')}}</textarea>
                         </div>
                     </div>
                 </div>
