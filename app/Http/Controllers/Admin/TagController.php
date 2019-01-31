@@ -4,15 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\Tag\StoreRequest;
 use App\Http\Requests\Admin\Tag\UpdateRequest;
-use App\Models\Tag\Tag;
 use App\Http\Controllers\Controller;
-use App\Models\Tag\TagRepository;
+use App\Repositories\TagRepository;
 
 class TagController extends Controller
 {
+
+    private $tagRepository;
+
+    public function __construct(TagRepository $tagRepository)
+    {
+        $this->tagRepository = $tagRepository;
+    }
+
     public function index()
     {
-        $tags = Tag::all();
+        $tags = $this->tagRepository->findAll();
         return view('admin.tag.index', compact('tags'));
     }
 
@@ -23,25 +30,25 @@ class TagController extends Controller
 
     public function store(StoreRequest $request)
     {
-        TagRepository::save($request);
+        $this->tagRepository->add($request);
         return redirect()->route('tag.index');
     }
 
     public function edit($id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = $this->tagRepository->find($id);
         return view('admin.tag.edit', compact('tag'));
     }
 
     public function update(UpdateRequest $request, $id)
     {
-        TagRepository::update($request, $id);
+        $this->tagRepository->update($request, $id);
         return redirect()->route('tag.index');
     }
 
     public function destroy($id)
     {
-        TagRepository::delete($id);
+        $this->tagRepository->delete($id);
         return redirect()->route('tag.index');
     }
 }

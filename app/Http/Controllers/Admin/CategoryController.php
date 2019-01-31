@@ -4,16 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\Category\StoreRequest;
 use App\Http\Requests\Admin\Category\UpdateRequest;
-use App\Models\Category\Category;
-use App\Models\Category\CategoryRepository;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
+    private $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function index()
     {
-        $categories = Category::all();
+        $categories = $this->categoryRepository->findAll();
         return view('admin.category.index', compact('categories'));
     }
 
@@ -25,7 +30,7 @@ class CategoryController extends Controller
 
     public function store(StoreRequest $request)
     {
-        CategoryRepository::save($request);
+        $this->categoryRepository->add($request);
         return redirect()->route('category.index');
     }
 
@@ -36,19 +41,19 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->categoryRepository->find($id);
         return view('admin.category.edit', compact('category'));
     }
 
     public function update(UpdateRequest $request, $id)
     {
-        CategoryRepository::update($request, $id);
+        $this->categoryRepository->update($request, $id);
         return redirect()->route('category.index');
     }
 
     public function destroy($id)
     {
-        CategoryRepository::delete($id);
+        $this->categoryRepository->delete($id);
         return redirect()->route('category.index');
     }
 }

@@ -17,7 +17,7 @@
 
             <!-- Default box -->
             <div class="box">
-                {!! Form::open(['route'=>['category.update',$category->id], 'method'=>'put']) !!}
+                {!! Form::open(['route'=>['category.update',$category->getId()], 'method'=>'put']) !!}
                 <div class="box-header with-border">
                     <h3 class="box-title">Изменение категории</h3>
                     @include('admin.layout.errors')
@@ -27,7 +27,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Название</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" value="{{$category->title}}" name="title">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" value="{{$category->getTitle()}}" name="title">
                         </div>
                     </div>
 

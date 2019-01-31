@@ -323,7 +323,7 @@ if(this.$element.prop("multiple"))this.current(function(d){var e=[];a=[a],a.push
 			}
 			else if (this.component && this.hasInput){ // component: input + button
 				this._events = [
-					// For components that are not readonly, allow keyboard nav
+					// For Components that are not readonly, allow keyboard nav
 					[this.element.find('input'), {
 						focus: $.proxy(this.show, this),
 						keyup: $.proxy(function(e){

@@ -38,11 +38,11 @@
                         <tbody>
                         @foreach($tags as $tag)
                         <tr>
-                            <td>{{$tag->id}}</td>
-                            <td>{{$tag->title}}</td>
+                            <td>{{$tag->getId()}}</td>
+                            <td>{{$tag->getTitle()}}</td>
                             <td>
-                                <a href="{{route('tag.edit', $tag->id)}}" class="fa fa-pencil"></a>
-                                {{Form::open(['route'=>['tag.destroy', $tag->id], 'method'=>'delete'])}}
+                                <a href="{{route('tag.edit', $tag->getId())}}" class="fa fa-pencil"></a>
+                                {{Form::open(['route'=>['tag.destroy', $tag->getId()], 'method'=>'delete'])}}
                                 <button onclick="return confirm('are you sure?')" type="submit" class="delete">
                                     <i class="fa fa-remove"></i>
                                 </button>

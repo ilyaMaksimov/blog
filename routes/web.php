@@ -21,3 +21,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('/tag', 'TagController');
     Route::resource('/post', 'PostController');
 });
+
+Route::get('test', 'TestController@index')->name('test');

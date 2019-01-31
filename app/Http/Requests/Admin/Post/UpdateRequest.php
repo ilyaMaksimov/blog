@@ -18,7 +18,7 @@ class UpdateRequest extends FormRequest
             'description' => 'required|string|max:255',
             'date' => 'required|date|date_format:"Y-m-d"',
             'content' => 'required|string',
-            'status' => 'boolean',
+            'is_public' => 'boolean',
             'is_featured' => 'boolean',
             'image' => 'nullable|image|mimes:jpeg,png'
         ];

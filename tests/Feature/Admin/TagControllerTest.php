@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\Tag\Tag;
+use App\Entities\Tag;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -44,9 +44,9 @@ class TagControllerTest extends TestCase
      */
     public function update_tag()
     {
-        $tag = factory(Tag::class)->create();
+        $tag = entity(Tag::class)->create();
 
-        $this->put('/admin/tag/' . $tag->id, [
+        $this->put('/admin/tag/' . $tag->getId(), [
             'title' => $title = 'update tag'
         ]);
 
@@ -59,9 +59,9 @@ class TagControllerTest extends TestCase
      */
     public function when_update_the_tag_the_title_field_is_required()
     {
-        $tag = factory(Tag::class)->create();
+        $tag = entity(Tag::class)->create();
 
-        $response = $this->put('/admin/tag/'.$tag->id, []);
+        $response = $this->put('/admin/tag/'.$tag->getId(), []);
         $response->assertSessionHasErrors('title');
     }
 
@@ -70,18 +70,18 @@ class TagControllerTest extends TestCase
      */
     public function delete_tag()
     {
-        $tag = factory(Tag::class)->create();
+        $tag = entity(Tag::class)->create();
 
         $response = $this->get('/admin/tag');
         $response
             ->assertStatus(200)
-            ->assertSee($tag->title);
+            ->assertSee($tag->getTitle());
 
-        $this->delete('/admin/tag/'.$tag->id);
+        $this->delete('/admin/tag/'.$tag->getId());
 
         $responseDelete = $this->get('/admin/tag');
         $responseDelete
             ->assertStatus(200)
-            ->assertDontSee($tag->title);
+            ->assertDontSee($tag->getTitle());
     }
 }

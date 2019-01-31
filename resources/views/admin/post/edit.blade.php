@@ -13,7 +13,7 @@
         </section>
 
         <!-- Main content -->
-        {!! Form::open(['route' => ['post.update', $post->id], 'files'	=>	true, 'method'=>'put']) !!}
+        {!! Form::open(['route' => ['post.update', $post->getId()], 'files'	=>	true, 'method'=>'put']) !!}
         <section class="content">
         <!-- Default box -->
             <div class="box">
@@ -26,11 +26,11 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Название</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder=""
-                                   value="{{$post->title}}" name="title">
+                                   value="{{$post->getTitle()}}" name="title">
                         </div>
 
                         <div class="form-group">
-                            <img src="{{\App\Entity\Image::getPath($post->image)}}" alt="" class="img-responsive" width="200">
+                            <img src="{{\App\Components\Image::getPath($post->getImage())}}" alt="" class="img-responsive" width="200">
                             <label for="exampleInputFile">Лицевая картинка</label>
                             <input type="file" id="exampleInputFile" name="image">
 
@@ -39,9 +39,9 @@
 
                         <div class="form-group">
                             <label>Категория</label>
-                            {{Form::select('category_id',
+                            {{Form::select('category',
                                 $categories,
-                                $post->category->id,
+                                $post->getCategory()->getId(),
                                 ['class' => 'form-control select2'])
                             }}
                         </div>
@@ -61,7 +61,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" id="datepicker" value="{{$post->date}}" name="date">
+                                <input type="text" class="form-control pull-right" id="datepicker" value="{{ $post->getDate() }}" name="date">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -69,7 +69,8 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                {{ Form::checkbox('is_featured', '1', $post->is_featured,['class'=>'minimal']) }}
+                                <input type="checkbox" name="is_featured" value="0"  style='display:none;' checked>
+                                {{ Form::checkbox('is_featured', '1', $post->getIsFeatured(),['class'=>'minimal']) }}
                             </label>
                             <label>
                                 Рекомендовать
@@ -78,7 +79,8 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                {{ Form::checkbox('status', '1', $post->status,['class'=>'minimal']) }}
+                                <input type="checkbox" name="is_public" value="0"  style='display:none;' checked>
+                                {{ Form::checkbox('is_public', '1', $post->getIsPublic(),['class'=>'minimal']) }}
                             </label>
                             <label>
                                 Черновик
@@ -89,14 +91,14 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Описание</label>
                             <textarea name="description" id="" cols="30" rows="10"
-                                      class="form-control">{{$post->description}}</textarea>
+                                      class="form-control">{{$post->getDescription()}}</textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Полный текст</label>
                             <textarea name="content" id="" cols="30" rows="10"
-                                      class="form-control">{{$post->content}}</textarea>
+                                      class="form-control">{{$post->getContent()}}</textarea>
                         </div>
                     </div>
                 </div>

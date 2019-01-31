@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\Tag\Tag;
+use App\Entities\Tag;
 
 $factory->define(Tag::class, function (Faker $faker) {
     return [

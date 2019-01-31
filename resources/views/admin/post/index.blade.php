@@ -39,16 +39,16 @@
                         <tbody>
                       @foreach($posts as $post)
                         <tr>
-                            <td>{{$post->id}}</td>
-                            <td>{{$post->title}}</td>
-                            <td>{{$post->category->title}}</td>
+                            <td>{{$post->getId()}}</td>
+                            <td>{{$post->getTitle()}}</td>
+                            <td>{{$post->getCategory()->getTitle()}}</td>
                             <td>{{$post->getTagsTitles()}}</td>
                             <td>
-                                <img src="{{\App\Entity\Image::getPath($post->image)}}" alt="" class="img-responsive" width="100">
+                                <img src="{{\App\Components\Image::getPath($post->getImage())}}" alt="" class="img-responsive" width="100">
                             </td>
                             <td>
-                                <a href="{{route('post.edit', $post->id)}}" class="fa fa-pencil"></a>
-                                {{Form::open(['route'=>['post.destroy', $post->id], 'method'=>'delete'])}}
+                                <a href="{{route('post.edit', $post->getId())}}" class="fa fa-pencil"></a>
+                                {{Form::open(['route'=>['post.destroy', $post->getId()], 'method'=>'delete'])}}
                                 <button onclick="return confirm('are you sure?')" type="submit" class="delete">
                                     <i class="fa fa-remove"></i>
                                 </button>

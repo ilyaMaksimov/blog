@@ -72,6 +72,7 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
+
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
@@ -85,6 +86,8 @@
                 </div>
 
                 <div class="links">
+                    <a href="{{ route('test') }}">Test</a>
+                    <a href="{{ route('dashboard') }}">Admin</a>
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>

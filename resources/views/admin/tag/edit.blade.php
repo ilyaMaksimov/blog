@@ -14,7 +14,7 @@
 
         <!-- Main content -->
         <section class="content">
-        {!! Form::open(['route' => ['tag.update', $tag->id], 'method' => 'put']) !!}
+        {!! Form::open(['route' => ['tag.update', $tag->getId()], 'method' => 'put']) !!}
         <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Название</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder=""
-                                   value="{{$tag->title}}" name="title">
+                                   value="{{$tag->getTitle()}}" name="title">
                         </div>
                     </div>
                 </div>

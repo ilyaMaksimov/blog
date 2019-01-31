@@ -39,11 +39,11 @@
                         <tbody>
                         @foreach($categories as $category)
                         <tr>
-                            <td>{{$category->id}}</td>
-                            <td>{{$category->title}}</td>
+                            <td>{{$category->getId()}}</td>
+                            <td>{{$category->getTitle()}}</td>
                             <td>
-                                <a href="{{route('category.edit', $category->id)}}" class="fa fa-pencil"></a>
-                                {{Form::open(['route'=>['category.destroy', $category->id], 'method'=>'delete'])}}
+                                <a href="{{route('category.edit', $category->getId())}}" class="fa fa-pencil"></a>
+                                {{Form::open(['route'=>['category.destroy', $category->getId()], 'method'=>'delete'])}}
                                 <button onclick="return confirm('are you sure?')" type="submit" class="delete">
                                     <i class="fa fa-remove"></i>
                                 </button>

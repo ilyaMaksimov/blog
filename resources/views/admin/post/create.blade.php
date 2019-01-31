@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label>Категория</label>
-                            {{Form::select('category_id',
+                            {{Form::select('category',
                                 $categories,
                                 null,
                                 ['class' => 'form-control select2'])
@@ -70,7 +70,8 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" class="minimal" name="is_featured">
+                                <input type="checkbox" name="is_featured" value="0" style='display:none;' checked>
+                                <input type="checkbox" class="minimal" name="is_featured" value="1">
                             </label>
                             <label>
                                 Рекомендовать
@@ -80,7 +81,8 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" class="minimal" name="status">
+                                <input type="checkbox" name="is_public" value="0"  style='display:none;' checked>
+                                <input type="checkbox" class="minimal" name="is_public" value="1">
                             </label>
                             <label>
                                 Черновик

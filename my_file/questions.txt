@@ -22,3 +22,10 @@ findOrFail
 # Есть ли смысл если я убрал  сохранение и обновление в Repository
 
 # может Image-> remove() и update сделать статическим методом?
+
+# как обрабатывать исключения в doctrine?
+
+#AppServiceProvider Правильно?
+
+# post->selectedTagsId()
+  post->getTagsTitles нормально???

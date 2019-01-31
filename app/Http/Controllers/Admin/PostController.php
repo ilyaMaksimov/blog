@@ -4,30 +4,44 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Admin\Post\UpdateRequest;
-use App\Models\Category\CategoryRepository;
-use App\Models\Post\Post;
-use App\Models\Post\PostRepository;
+use App\Repositories\CategoryRepository;
+use App\Repositories\PostRepository;
+use App\Repositories\TagRepository;
 use App\Http\Controllers\Controller;
-use App\Models\Tag\TagRepository;
 
 class PostController extends Controller
 {
+    private $postRepository;
+    private $categoryRepository;
+    private $tagRepository;
+
+    public function __construct(
+        PostRepository $postRepository,
+        CategoryRepository $categoryRepository,
+        TagRepository $tagRepository
+    )
+    {
+        $this->postRepository = $postRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->tagRepository = $tagRepository;
+    }
+
     public function index()
     {
-        $posts = Post::all();
+        $posts = $this->postRepository->findAll();
         return view('admin.post.index', compact('posts'));
     }
 
     public function create()
     {
-        $categories = CategoryRepository::getArrayOfIdAndTitle();
-        $tags = TagRepository::getArrayOfIdAndTitle();
+        $categories = $this->categoryRepository->getArrayOfIdAndTitle();
+        $tags = $this->tagRepository->getArrayOfIdAndTitle();
         return view('admin.post.create', compact('categories', 'tags'));
     }
 
     public function store(StoreRequest $request)
     {
-        PostRepository::add($request);
+        $this->postRepository->add($request);
         return redirect()->route('post.index');
     }
 
@@ -38,22 +52,22 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-        $categories = CategoryRepository::getArrayOfIdAndTitle();
-        $tags = TagRepository::getArrayOfIdAndTitle();
+        $post = $this->postRepository->find($id);
+        $categories = $this->categoryRepository->getArrayOfIdAndTitle();
+        $tags = $this->tagRepository->getArrayOfIdAndTitle();
 
         return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
     public function update(UpdateRequest $request, $id)
     {
-        PostRepository::update($request, $id);
+        $this->postRepository->update($request, $id);
         return redirect()->route('post.index');
     }
 
     public function destroy($id)
     {
-        PostRepository::delete($id);
+        $this->postRepository->delete($id);
         return redirect()->route('post.index');
     }
 }

@@ -2,13 +2,15 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\Category\Category;
+use App\Entities\Category;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class ViewCategoryTest extends TestCase
 {
     use DatabaseTransactions;
+    //use DatabaseMigrations;
 
     /**
      * @test
@@ -39,9 +41,9 @@ class ViewCategoryTest extends TestCase
      */
     public function update_category()
     {
-        $category = factory(Category::class)->create();
+        $category = entity(Category::class)->make();
 
-        $this->put('/admin/category/' . $category->id, [
+        $this->put('/admin/category/' . $category->getId(), [
             'title' => $title = 'update title',
         ]);
 
@@ -54,9 +56,9 @@ class ViewCategoryTest extends TestCase
      */
     public function when_updating_the_category_the_title_field_is_obligatory()
     {
-        $category = factory(Category::class)->create();
+        $category = entity(Category::class)->create();
 
-        $response = $this->put('/admin/category/' . $category->id);
+        $response = $this->put('/admin/category/' . $category->getId());
         $response->assertSessionHasErrors('title');
     }
 
@@ -65,18 +67,18 @@ class ViewCategoryTest extends TestCase
      */
     public function delete_category()
     {
-        $category = factory(Category::class)->create();
+        $category = entity(Category::class)->create();
 
         $response = $this->get('/admin/category');
         $response
             ->assertStatus(200)
-            ->assertSee($category->title);
+            ->assertSee($category->getTitle());
 
-        $this->delete('/admin/category/' . $category->id);
+        $this->delete('/admin/category/' . $category->getId());
 
         $responseDelete = $this->get('/admin/category/');
         $responseDelete
             ->assertStatus(200)
-            ->assertDontSee($category->title);
+            ->assertDontSee($category->getTitle());
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Entity;
 
-use App\Entity\Image;
+use App\Components\Image;
 use App\Models\Post\Post;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
