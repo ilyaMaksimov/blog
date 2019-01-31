@@ -91,7 +91,6 @@ class PostRepository extends EntityRepository
 
         $post->setImage($image->getName());
 
-
         // Это очень плохое решение?
         $tags = $this->em->getRepository('App\Entities\Tag')->findBy(['id' => $request['tags']]);
         $post->getTags()->clear();
@@ -119,19 +118,4 @@ class PostRepository extends EntityRepository
         $this->em->remove($post);
         $this->em->flush();
     }
-
-
-    /*public function getArrayOfIdAndTitle()
-    {
-        $resultQuery = $this->em->createQuery('select c.id, c.title from App\Entities\Category c')->getResult();
-
-        $result = [];
-        foreach ($resultQuery as $category) {
-            $result[$category['id']]= $category['title'];
-        }
-
-        return $result ;
-    }*/
-
-
 }
