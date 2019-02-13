@@ -322,15 +322,4 @@ class Post
         }
         return implode(', ', $tagsIdArray);
     }
-
-    /*public function setStatus(int $status)
-    {
-        if (!in_array($status, [self::STATUS_PUBLIC, self::STATUS_DRAFT], true)) {
-            throw new InvalidArgumentException('wrong status');
-        }
-
-        $this->status = $status;
-
-        return $this;
-    }*/
 }

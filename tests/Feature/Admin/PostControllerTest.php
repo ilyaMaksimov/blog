@@ -2,9 +2,12 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\Category\Category;
-use App\Models\Post\Post;
-use App\Models\Tag\Tag;
+use App\Entities\Category;
+use App\Entities\Post;
+//use App\Models\Post\Post;
+//use App\Models\Post\Post;
+//use App\Models\Tag\Tag;
+use App\Entities\Tag;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\UploadedFile;
@@ -25,7 +28,7 @@ class PostControllerTest extends TestCase
        // Storage::fake('avatars');
 
 
-        $category = factory(Category::class)->create();
+        $category = entity(Category::class)->create();
 
         $post = factory(Post::class)->create([
             'category_id' => $category->id,
@@ -70,8 +73,8 @@ class PostControllerTest extends TestCase
      */
     public function store_post()
     {
-        $category = factory(Category::class)->create();
-        $tags = factory(Tag::class, 2)->create();
+        $category = entity(Category::class)->create();
+        $tags = entity(Tag::class, 2)->create();
 
         $array = [
             'title' => $title = 'title test',
@@ -111,11 +114,11 @@ class PostControllerTest extends TestCase
     public function update_post()
     {
         /** @var Post $post */
-        $post = factory(Post::class)->create($arrayCreate = [
+        $post = entity(Post::class)->create($arrayCreate = [
             'title' => 'title test',
             'content' => 'content test',
             'description' => 'description test',
-            'category_id' => factory(Category::class)->create()->id,
+            'category_id' => entity(Category::class)->create()->id,
             'status' => 0,
             'views' => 0,
             'is_featured' => 1,
@@ -124,7 +127,7 @@ class PostControllerTest extends TestCase
             'image' => 'rtyv23dsfsdg',
         ]);
 
-        $tags = factory(Tag::class, 2)->create();
+        $tags = entity(Tag::class, 2)->create();
 
         $arrayUpdate = [
             'title' => 'title test update',
@@ -150,7 +153,7 @@ class PostControllerTest extends TestCase
      */
     public function delete_post()
     {
-        $post = factory(Post::class)->create([]);
+        $post = entity(Post::class)->create([]);
 
         $response = $this->get('/admin/post');
         $response
