@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::get('/', 'Frontend\PostController@index');
+Route::get('/post/{slug}', 'Frontend\PostController@show')->name('frontend.post.show');
+Route::get('/category/{slug}', 'Frontend\PostController@category')->name('frontend.category.show');
+Route::get('/tag/{slug}', 'Frontend\PostController@tag')->name('frontend.tag.show');
+
+//});
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('', 'DashboardController@index')->name('dashboard');
@@ -22,4 +26,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('/post', 'PostController');
 });
 
-Route::get('test', 'TestController@index')->name('test');
+

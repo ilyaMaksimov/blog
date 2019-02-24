@@ -118,4 +118,67 @@ class PostRepository extends EntityRepository
         $this->em->remove($post);
         $this->em->flush();
     }
+
+    /**
+     * Get related posts
+     * @param Post $post
+     * @return mixed
+     */
+    public function related(Post $post)
+    {
+        $query = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from($this->entityName, 'p')
+            ->where('p.category = :category')
+            ->andWhere('p.id != :id')
+            ->setParameter('category', $post->getCategory())
+            ->setParameter('id', $post->getId())
+            ->getQuery();
+        return $query->execute();
+    }
+
+    public function findBySlugTag($slug)
+    {
+        $query = 'SELECT p FROM App\Entities\Post p  JOIN p.tags c WHERE c.slug = :slug';
+        return $query = $this->em->createQuery($query)
+            ->setParameter(':slug', $slug)
+            ->getResult();
+    }
+
+    public function findBySlugCategory($slug)
+    {
+        $query = "SELECT p FROM App\Entities\Post p  JOIN p.category c WHERE c.slug = :slug";
+        return $query = $this->em->createQuery($query)
+            ->setParameter(':slug', $slug)
+            ->getResult();
+    }
+
+    public function query()
+    {
+        //$query = 'SELECT u FROM App\Entities\Post u';
+        //$query = 'SELECT p FROM App\Entities\Post p  JOIN App\Entities\Category c WHERE c.id = 14';
+        //$query = 'SELECT p FROM App\Entities\Post p  JOIN p.category c WHERE c.id = 1';
+        //$query = "SELECT p FROM App\Entities\Post p  JOIN p.category c WHERE c.slug = 'kategoriya-1'";
+        $query = "SELECT p FROM App\Entities\Post p  JOIN p.tags c WHERE c.slug = :slug";
+        return $query = $this->em->createQuery($query)
+            ->setParameter(':slug', 321)
+            ->getResult();
+    }
+
+    public function query1()
+    {
+        $query = $this->em->createQueryBuilder()
+            ->select('p')
+            ->from($this->entityName, 'p')
+            //->where('p.tags = :tags')
+            ->where('p.category = :category')
+            // ->andWhere('p.id != :id')
+            //->setParameter('category', $post->getCategory())
+            //->setParameter('tags', [3])
+            ->setParameter('category', 17)
+            ->getQuery();
+        return $query->execute();
+    }
+
+
 }

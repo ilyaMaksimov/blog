@@ -136,7 +136,7 @@ class Post
      */
     public function setSlug($slug): void
     {
-        $this->slug = $slug;
+        $this->slug = str_slug($slug);
     }
 
     /**

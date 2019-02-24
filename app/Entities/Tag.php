@@ -39,7 +39,7 @@ class Tag
 
     public function getSlug()
     {
-        return $this->title;
+        return $this->slug;
     }
 
     public function setSlug($slug)

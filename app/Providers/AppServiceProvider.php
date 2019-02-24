@@ -19,7 +19,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+       view()->composer('frontend.layout._sidebar', function ($view){
+           $postRepository = new PostRepository($this->app['em'], $this->app['em']->getClassMetaData(Post::class));
+           $categoryRepository =  new CategoryRepository($this->app['em'], $this->app['em']->getClassMetaData(Category::class));
+
+           $view->with('categories', $categoryRepository->findAll());
+           $view->with('featuredPosts', $postRepository->findBy(['is_featured'=>1]));
+           $view->with('recentPosts', $postRepository->findBy(['id'=>[1,7,8]],['date'=> 'ASC']));
+       });
     }
 
     /**

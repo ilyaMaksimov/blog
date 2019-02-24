@@ -19,8 +19,7 @@ class PostController extends Controller
         PostRepository $postRepository,
         CategoryRepository $categoryRepository,
         TagRepository $tagRepository
-    )
-    {
+    ) {
         $this->postRepository = $postRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;

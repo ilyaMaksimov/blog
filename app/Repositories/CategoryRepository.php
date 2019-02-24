@@ -79,9 +79,9 @@ class CategoryRepository extends EntityRepository
 
         $result = [];
         foreach ($resultQuery as $category) {
-            $result[$category['id']]= $category['title'];
+            $result[$category['id']] = $category['title'];
         }
 
-        return $result ;
+        return $result;
     }
 }

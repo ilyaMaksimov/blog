@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\Post\Post;
+use App\Entities\Post;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [

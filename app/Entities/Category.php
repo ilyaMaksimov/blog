@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
@@ -21,6 +22,17 @@ class Category
     /** @ORM\Column(type="string") */
     protected $slug;
 
+    /*
+     * @ORM\OneToMany(targetEntity="Post")
+     * @var ArrayCollection|Post[]
+     */
+    protected $post;
+
+    public function getPost()
+    {
+        $this->post;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -38,7 +50,7 @@ class Category
 
     public function getSlug()
     {
-        return $this->title;
+        return $this->slug;
     }
 
     public function setSlug($slug)
