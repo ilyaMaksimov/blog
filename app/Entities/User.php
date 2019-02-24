@@ -38,6 +38,12 @@ class User implements AuthenticatableContract, CanResetPasswordContract
      */
     protected $name;
 
+    /**
+     * @var string
+     * @ORM\Column(type="boolean", options={"default":0})
+     */
+    protected $is_admin;
+
     public function setName($name)
     {
         return $this->name = $name;
@@ -51,6 +57,11 @@ class User implements AuthenticatableContract, CanResetPasswordContract
     public function getName()
     {
         return $this->name;
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
     }
 
 }

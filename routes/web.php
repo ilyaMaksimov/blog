@@ -11,15 +11,14 @@
 |
 */
 
-//Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-Route::get('/', 'Frontend\PostController@index');
-Route::get('/post/{slug}', 'Frontend\PostController@show')->name('frontend.post.show');
-Route::get('/category/{slug}', 'Frontend\PostController@category')->name('frontend.category.show');
-Route::get('/tag/{slug}', 'Frontend\PostController@tag')->name('frontend.tag.show');
+Route::group(['namespace' => 'Frontend'], function () {
+    Route::get('/', 'PostController@index');
+    Route::get('/post/{slug}', 'PostController@show')->name('frontend.post.show');
+    Route::get('/category/{slug}', 'PostController@category')->name('frontend.category.show');
+    Route::get('/tag/{slug}', 'PostController@tag')->name('frontend.tag.show');
+});
 
-//});
-
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
     Route::get('', 'DashboardController@index')->name('dashboard');
     Route::resource('/category', 'CategoryController');
     Route::resource('/tag', 'TagController');
@@ -27,11 +26,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 });
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
