@@ -36,4 +36,15 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    protected function resetPassword($user, $password)
+    {
+        $user->setPassword(bcrypt($password));
+        $user->setRememberToken(Str::random(60));
+
+        EntityManager::persist($user);
+        EntityManager::flush();
+
+        $this->guard()->login($user);
+    }
 }
