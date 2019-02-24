@@ -23,10 +23,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = $this->postRepository->findAll();
-        //$categories = $this->categoryRepository->findAll();
-        //dd($recentPosts);
-
+        $posts = $this->postRepository->getAll();
         return view('frontend.index', compact('posts'));
     }
 

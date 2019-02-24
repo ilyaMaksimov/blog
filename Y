@@ -1,0 +1,36 @@
+frontend 
+*view post-list(by category and tag)
+*view post-show
+*view post-index
+*add sitebar
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch refactoring-test
+# Changes to be committed:
+#	modified:   app/Entities/Category.php
+#	modified:   app/Entities/Post.php
+#	modified:   app/Entities/Tag.php
+#	modified:   app/Http/Controllers/Admin/PostController.php
+#	new file:   app/Http/Controllers/Frontend/PostController.php
+#	deleted:    app/Http/Controllers/TestController.php
+#	modified:   app/Providers/AppServiceProvider.php
+#	modified:   app/Repositories/CategoryRepository.php
+#	modified:   app/Repositories/PostRepository.php
+#	modified:   database/factories/PostFactory.php
+#	modified:   database/seeds/DatabaseSeeder.php
+#	modified:   public/plugins/ckfinder/core/connector/php/vendor/dropbox/dropbox-sdk/lib/Dropbox/SSLTester.php
+#	modified:   public/plugins/ckfinder/core/connector/php/vendor/symfony/http-foundation/Request.php
+#	new file:   public/uploads/o2sldxJp2c.jpeg
+#	new file:   public/uploads/rSPTLJF58j.jpeg
+#	renamed:    public/uploads/77tJ9knTz6.jpeg -> public/uploads/upDxIHIwE4.jpeg
+#	modified:   resources/views/admin/layout/template.blade.php
+#	new file:   resources/views/frontend/index.blade.php
+#	new file:   resources/views/frontend/layout/_sidebar.blade.php
+#	new file:   resources/views/frontend/layout/social_networks.blade.php
+#	new file:   resources/views/frontend/layout/template.blade.php
+#	new file:   resources/views/frontend/list.blade.php
+#	new file:   resources/views/frontend/show.blade.php
+#	modified:   routes/web.php
+#

@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
 
            $view->with('categories', $categoryRepository->findAll());
            $view->with('featuredPosts', $postRepository->findBy(['is_featured'=>1]));
-           $view->with('recentPosts', $postRepository->findBy(['id'=>[1,7,8]],['date'=> 'ASC']));
+           $view->with('recentPosts', $postRepository->recentPosts());
        });
     }
 

@@ -153,6 +153,21 @@ class PostRepository extends EntityRepository
             ->getResult();
     }
 
+    public function recentPosts()
+    {
+        $query = "SELECT p FROM App\Entities\Post p  ORDER BY p.date DESC";
+        return $query = $this->em->createQuery($query)
+            ->setMaxResults(2)
+            ->getResult();
+    }
+
+    public function getAll()
+    {
+        $query = "SELECT p FROM App\Entities\Post p  ORDER BY p.date DESC";
+        return $query = $this->em->createQuery($query)
+            ->getResult();
+    }
+
     public function query()
     {
         //$query = 'SELECT u FROM App\Entities\Post u';
@@ -165,20 +180,6 @@ class PostRepository extends EntityRepository
             ->getResult();
     }
 
-    public function query1()
-    {
-        $query = $this->em->createQueryBuilder()
-            ->select('p')
-            ->from($this->entityName, 'p')
-            //->where('p.tags = :tags')
-            ->where('p.category = :category')
-            // ->andWhere('p.id != :id')
-            //->setParameter('category', $post->getCategory())
-            //->setParameter('tags', [3])
-            ->setParameter('category', 17)
-            ->getQuery();
-        return $query->execute();
-    }
 
 
 }

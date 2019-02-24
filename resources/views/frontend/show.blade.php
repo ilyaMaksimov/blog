@@ -36,7 +36,7 @@
 							<span
                                     {{--class="social-share-title pull-left text-capitalize">By {{$post->author->name}} On {{$post->getDate()}}</span>--}}
                                     class="social-share-title pull-left text-capitalize"> Автор: {{env('NAME_AUTHOR')}}
-                                br
+                                <br>
                                 Дата: {{$post->getDate()}}</span>
                                 @include('frontend.layout.social_networks')
                             </div>

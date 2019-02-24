@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
                                 <div class="social-share">
-                                    <span class="social-share-title pull-left text-capitalize"><a href="#">{{env('NAME_AUTHOR')}}</a> On {{$post->getDate()}}</span>
+                                    <span class="social-share-title pull-left text-capitalize">Автор:<a href="#">{{env('NAME_AUTHOR')}}</a> <br> Дата: {{$post->getDate()}}</span>
                                     @include('frontend.layout.social_networks')
                                 </div>
                             </div>

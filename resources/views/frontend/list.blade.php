@@ -33,9 +33,13 @@
                                         </header>
                                         <div class="entry-content">
                                             {!! $post->getDescription() !!}
-
+                                            <hr>
                                             <div class="social-share">
-                                                <span class="social-share-title pull-left text-capitalize">Дата: {{$post->getDate()}}</span>
+
+                                                <span class="social-share-title pull-left text-capitalize">
+                                                    Автор:<a href="#">{{env('NAME_AUTHOR')}}</a>
+                                                    <br>
+                                                    Дата: {{$post->getDate()}}</span>
                                             </div>
                                         </div>
                                     </div>

@@ -14,7 +14,7 @@
 
         </aside>
         <aside class="widget">
-            <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
+            <h3 class="widget-title text-uppercase text-center">Популярные посты</h3>
             {{--@foreach($popularPosts as $post)
                 <div class="popular-post">
 
@@ -34,7 +34,7 @@
             @endforeach--}}
         </aside>
         <aside class="widget">
-            <h3 class="widget-title text-uppercase text-center">Featured Posts</h3>
+            <h3 class="widget-title text-uppercase text-center">Рекомендованные посты</h3>
 
             <div id="widget-feature" class="owl-carousel">
                 @foreach($featuredPosts as $post)
@@ -42,7 +42,7 @@
                         <div class="feature-content">
                             <img src="{{\App\Components\Image::getPath($post->getImage())}}" alt="">
 
-                            <a href="#" class="overlay-text text-center">
+                            <a href="{{route('frontend.post.show', $post->getSlug())}}" class="overlay-text text-center">
                                 <h5 class="text-uppercase">{{$post->getTitle()}}</h5>
 
                                 <p>{!!$post->getDescription()!!}</p>
@@ -53,19 +53,19 @@
             </div>
         </aside>
         <aside class="widget pos-padding">
-            <h3 class="widget-title text-uppercase text-center">Recent Posts</h3>
+            <h3 class="widget-title text-uppercase text-center">Недавние посты</h3>
             @foreach($recentPosts as $post)
                 <div class="thumb-latest-posts">
 
 
                     <div class="media">
                         <div class="media-left">
-                            <a href="{{route('post.show', $post->getSlug())}}" class="popular-img"><img src="{{$post->getImage()}}" alt="">
+                            <a href="{{route('frontend.post.show', $post->getSlug())}}" class="popular-img"><img src="{{\App\Components\Image::getPath($post->getImage())}}" alt="">
                                 <div class="p-overlay"></div>
                             </a>
                         </div>
                         <div class="p-content">
-                            <a href="{{route('post.show', $post->getSlug())}}" class="text-uppercase">{{$post->getTitle()}}</a>
+                            <a href="{{route('frontend.post.show', $post->getSlug())}}" class="text-uppercase">{{$post->getTitle()}}</a>
                             <span class="p-date">{{$post->getDate()}}</span>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
             <ul>
                 @foreach($categories as $category)
                     <li>
-                        <a href="{{route('category.show', $category->getSlug())}}">{{$category->getTitle()}}</a>
+                        <a href="{{route('frontend.category.show', $category->getSlug())}}">{{$category->getTitle()}}</a>
                       {{--  <span class="post-count pull-right"> ({{$category->posts()->count()}})</span>--}}
                     {{--    <span class="post-count pull-right"> (12)</span>--}}
                     </li>
