@@ -2,6 +2,8 @@
 
 namespace App\Entities;
 
+use App\Components\Image;
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -13,6 +15,16 @@ use LaravelDoctrine\ORM\Notifications\Notifiable;
 /**
  * @ORM\Entity
  * @ORM\Table(name="doc_users")
+ *
+ * @property int $id
+ * @property string $email
+ * @property string $name
+ * @property string $password
+ * @property string $remember_token
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property boolean $is_admin
+ * @property string|null $avatar
  */
 class User implements AuthenticatableContract, CanResetPasswordContract
 {
@@ -44,14 +56,17 @@ class User implements AuthenticatableContract, CanResetPasswordContract
      */
     protected $is_admin;
 
-    public function setName($name)
+    /** @ORM\Column(type="string", nullable=true) */
+    protected $avatar;
+
+    public function getId()
     {
-        return $this->name = $name;
+        return $this->id;
     }
 
-    public function setEmail($email)
+    public function setName($name)
     {
-        return $this->email = $email;
+        $this->name = $name;
     }
 
     public function getName()
@@ -59,10 +74,34 @@ class User implements AuthenticatableContract, CanResetPasswordContract
         return $this->name;
     }
 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
     public function isAdmin()
     {
         return $this->is_admin;
     }
 
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function getPathAvatar()
+    {
+        return Image::getPath($this->getAvatar());
+    }
+
+    public function setAvatar($avatar): void
+    {
+        $this->avatar = $avatar;
+    }
 }
 
