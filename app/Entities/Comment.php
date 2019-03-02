@@ -26,10 +26,16 @@ class Comment
     /** @ORM\Column(type="string") */
     protected $text;
     /* @ORM\Column(type="integer") */
-    /**
+    /*
      * One Product has One Shipment.
      * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @var Post
      */
     protected $user_id;
 

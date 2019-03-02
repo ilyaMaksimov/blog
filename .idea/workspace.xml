@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35d20121-e498-4261-83e6-307d9eec8f46" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/Entities/Comment.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/Repositories/CommentRepository.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Entities/Post.php" afterPath="$PROJECT_DIR$/app/Entities/Post.php" />
-      <change beforePath="$PROJECT_DIR$/app/Entities/User.php" afterPath="$PROJECT_DIR$/app/Entities/User.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/PostController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/PostController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/ProfileController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/ProfileController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/PostRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/PostRepository.php" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/Mi7ljv3DXB.jpeg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/frontend/post/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/list.blade.php" afterPath="$PROJECT_DIR$/resources/views/frontend/post/list.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/frontend/post/show.blade.php" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
-      <change beforePath="$PROJECT_DIR$/storage/proxies/__CG__AppEntitiesCategory.php" afterPath="$PROJECT_DIR$/storage/proxies/__CG__AppEntitiesCategory.php" />
-      <change beforePath="$PROJECT_DIR$/storage/proxies/__CG__AppEntitiesPost.php" afterPath="$PROJECT_DIR$/storage/proxies/__CG__AppEntitiesPost.php" />
+      <change beforePath="$PROJECT_DIR$/app/Entities/Comment.php" afterPath="$PROJECT_DIR$/app/Entities/Comment.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,8 +56,8 @@
       <file leaf-file-name="Comment.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Entities/Comment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+            <state relative-caret-position="414">
+              <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -91,15 +74,6 @@
       </file>
       <file leaf-file-name="doc_comments" pinned="false" current-in-tab="false">
         <entry file="das://table:/fb580bba/a0531b0c-5a17-4c38-8971-0b616817d4e6/my_blog.doc_comments">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="doc_posts" pinned="false" current-in-tab="false">
-        <entry file="das://table:/fb580bba/a0531b0c-5a17-4c38-8971-0b616817d4e6/my_blog.doc_posts">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -132,7 +106,7 @@
       <file leaf-file-name="Post.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Entities/Post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
+            <state relative-caret-position="297">
               <caret line="77" column="20" lean-forward="true" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
               <folding />
             </state>
@@ -338,7 +312,7 @@
       <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="313" />
     <option name="y" value="105" />
     <option name="width" value="1380" />
@@ -629,7 +603,7 @@
       <workItem from="1551286179179" duration="624000" />
       <workItem from="1551287230399" duration="4659000" />
       <workItem from="1551347557022" duration="2166000" />
-      <workItem from="1551554094699" duration="3295000" />
+      <workItem from="1551554094699" duration="5083000" />
     </task>
     <servers />
   </component>
@@ -666,7 +640,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177108000" />
+    <option name="totallyTimeSpent" value="178896000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -678,7 +652,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="313" y="105" width="1920" height="1040" extended-state="7" />
+    <frame x="313" y="105" width="1920" height="1040" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1398079" sideWeight="0.4938838" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822758" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -689,7 +663,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16915688" sideWeight="0.5061162" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30743983" sideWeight="0.49359658" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23194748" sideWeight="0.49359658" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16915688" sideWeight="0.5061162" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1006,35 +980,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/PostController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/fb580bba/a0531b0c-5a17-4c38-8971-0b616817d4e6/my_blog.doc_users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/fb580bba/a0531b0c-5a17-4c38-8971-0b616817d4e6/my_blog.doc_posts">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/fb580bba/a0531b0c-5a17-4c38-8971-0b616817d4e6/my_blog.doc_comments">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel-doctrine/orm/src/Auth/Authenticatable.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
@@ -1091,6 +1036,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Entities/Post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="77" column="20" lean-forward="true" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/fb580bba/a0531b0c-5a17-4c38-8971-0b616817d4e6/my_blog.doc_posts">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/fb580bba/a0531b0c-5a17-4c38-8971-0b616817d4e6/my_blog.doc_users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/fb580bba/a0531b0c-5a17-4c38-8971-0b616817d4e6/my_blog.doc_comments">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Entities/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -1101,18 +1075,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Entities/Post.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Frontend/PostController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="77" column="20" lean-forward="true" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+        <state relative-caret-position="450">
+          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Entities/Comment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+        <state relative-caret-position="414">
+          <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
           <folding />
         </state>
       </provider>
