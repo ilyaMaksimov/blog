@@ -24,7 +24,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postRepository->getAll();
-        return view('frontend.index', compact('posts'));
+        // $posts = $this->postRepository->getAll()[0]->getComments()[0]->getAuthor()->getName();
+        //$posts = $this->postRepository->getAll()[0];
+        //dd($posts);
+        //$posts = $this->postRepository->getAll();
+        return view('frontend.post.index', compact('posts'));
     }
 
     public function show($slug)
@@ -32,19 +36,19 @@ class PostController extends Controller
         $post = $this->postRepository->findOneBy(['slug' => $slug]);
         $relatedPosts = $this->postRepository->related($post);
 
-        return view('frontend.show', compact('post', 'relatedPosts'));
+        return view('frontend.post.show', compact('post', 'relatedPosts'));
     }
 
 
     public function tag($slug)
     {
         $posts = $this->postRepository->findBySlugTag($slug);
-        return view('frontend.list', compact('posts'));
+        return view('frontend.post.list', compact('posts'));
     }
 
     public function category($slug)
     {
         $posts = $this->postRepository->findBySlugCategory($slug);
-        return view('frontend.list', compact('posts'));
+        return view('frontend.post.list', compact('posts'));
     }
 }

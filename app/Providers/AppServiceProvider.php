@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Entities\Category;
+use App\Entities\Comment;
 use App\Entities\Post;
 use App\Entities\Tag;
 use App\Entities\User;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CommentRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\UserRepository;
@@ -63,6 +65,13 @@ class AppServiceProvider extends ServiceProvider
             return new UserRepository(
                 $app['em'],
                 $app['em']->getClassMetaData(User::class)
+            );
+        });
+
+        $this->app->bind(CommentRepository::class, function ($app) {
+            return new CommentRepository(
+                $app['em'],
+                $app['em']->getClassMetaData(Comment::class)
             );
         });
     }

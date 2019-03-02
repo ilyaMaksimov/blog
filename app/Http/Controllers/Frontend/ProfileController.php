@@ -24,13 +24,12 @@ class ProfileController extends Controller
     public function index()
     {
         $user = $this->userRepository->find(Auth::id());
-
         return view('frontend.profile.index', compact('user'));
     }
 
     public function store(UpdateRequest $request)
     {
-        //dd($request);
+
         $this->userRepository->update($request, Auth::id());
         return redirect()->back()->with('status', 'Профиль успешно обновлен');
     }

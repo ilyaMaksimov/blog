@@ -31,6 +31,9 @@ class User implements AuthenticatableContract, CanResetPasswordContract
 
     use Authenticatable, CanResetPassword, Timestamps, Notifiable;
 
+    const SIMPLE = 0;
+    const ADMIN = 1;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -87,6 +90,11 @@ class User implements AuthenticatableContract, CanResetPasswordContract
     public function isAdmin()
     {
         return $this->is_admin;
+    }
+
+    public function setIsAdmin(bool $status): void
+    {
+        $this->is_admin = $status;
     }
 
     public function getAvatar()

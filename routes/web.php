@@ -8,6 +8,10 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@store');
+
+    Route::post('/comment', 'CommentController@store')->name('frontend.comment');
+    Route::delete('/comment/{id}', 'CommentController@destroy')->name('frontend.comment.destroy');
+
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {

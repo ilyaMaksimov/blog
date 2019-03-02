@@ -21,6 +21,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @property string $image
  * @property int $views
  * @property ArrayCollection|Tag[] $tags
+ * @property ArrayCollection|Comment[] $comments
  */
 class Post
 {
@@ -76,10 +77,17 @@ class Post
      */
     protected $tags;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post_id")
+     * @var ArrayCollection|Comment[]
+     */
+    protected $comments;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -321,5 +329,13 @@ class Post
             $tagsIdArray[] = $tag->getTitle();
         }
         return implode(', ', $tagsIdArray);
+    }
+
+    /**
+     * @return Comment[]|ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

@@ -5,7 +5,13 @@
     <div class="main-content">
         <div class="container">
             <div class="row">
+                @if(session('status'))
+                    <div class="alert alert-success">
+                        {{session('status')}}
+                    </div>
+                @endif
                 <div class="col-md-8">
+
                     <article class="post">
                         <div class="post-thumb">
                             <a href="{{route('frontend.post.show', $post->getSlug())}}"><img
@@ -42,51 +48,14 @@
                             </div>
                         </div>
                     </article>
-                    {{--<div class="top-comment"><!--top comment-->
-                        <img src="/images/comment.jpg" class="pull-left img-circle" alt="">
-                        <h4>Rubel Miah</h4>
+                {{--<div class="top-comment"><!--top comment-->
+                    <img src="/images/comment.jpg" class="pull-left img-circle" alt="">
+                    <h4>Rubel Miah</h4>
 
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy hello ro mod tempor
-                            invidunt ut labore et dolore magna aliquyam erat.</p>
-                    </div>--}}<!--top comment end-->
-                {{-- <div class="row"><!--blog next previous-->
-                     <div class="col-md-6">
-                         @if($post->hasPrevious())
-                             <div class="single-blog-box">
-                                 <a href="{{route('post.show', $post->getPrevious()->slug)}}">
-                                     <img src="{{$post->getPrevious()->getImage()}}" alt="">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy hello ro mod tempor
+                        invidunt ut labore et dolore magna aliquyam erat.</p>
+                </div>--}}<!--top comment end-->
 
-                                     <div class="overlay">
-
-                                         <div class="promo-text">
-                                             <p><i class=" pull-left fa fa-angle-left"></i></p>
-                                             <h5>{{$post->getPrevious()->title}}</h5>
-                                         </div>
-                                     </div>
-
-
-                                 </a>
-                             </div>
-                         @endif
-                     </div>
-                     <div class="col-md-6">
-                         @if($post->hasNext())
-                             <div class="single-blog-box">
-                                 <a href="{{route('post.show', $post->getNext()->slug)}}">
-                                     <img src="{{$post->getNext()->getImage()}}" alt="">
-
-                                     <div class="overlay">
-                                         <div class="promo-text">
-                                             <p><i class=" pull-right fa fa-angle-right"></i></p>
-                                             <h5>{{$post->getNext()->title}}</h5>
-
-                                         </div>
-                                     </div>
-                                 </a>
-                             </div>
-                         @endif
-                     </div>
-                 </div>--}}<!--blog next previous end-->
                     @if(!empty($relatedPosts))
                         <div class="related-post-carousel"><!--related post carousel-->
                             <div class="related-heading">
@@ -107,47 +76,65 @@
                         </div>
                     @endif
                 <!--related post carousel-->
-                    {{--@if(!$post->comments->isEmpty())
+                    @if(!empty($post->getComments()))
                         @foreach($post->getComments() as $comment)
                             <div class="bottom-comment"><!--bottom comment-->
                                 <div class="comment-img">
-                                    <img class="img-circle" src="{{$comment->author->getImage()}}" alt="" width="75" height="75">
+                                    <img class="img-circle" src="{{$comment->getAuthor()->getPathAvatar()}}" alt=""
+                                         width="75" height="75">
+
                                 </div>
+                                @if(\Illuminate\Support\Facades\Gate::forUser(\Illuminate\Support\Facades\Auth::user())->allows('author-comment',$comment->getAuthor()))
+                                <div class="text-right">
+                                    {{Form::open(['route'=>['frontend.comment.destroy', $comment->getId()], 'method'=>'delete'])}}
+                                    <button onclick="return confirm('Удалить комментарий?')" type="submit" class="delete">
+                                        <i class="fa fa-remove"></i>
+                                    </button>
+                                    {{Form::close()}}
 
+                                </div>
+                                @endif
+
+                               {{-- <div class="text-right">
+                               <a href="{{route('frontend.comment.delete', $comment->getId() )}}">Удалить</a>
+                               </div>
+--}}
                                 <div class="comment-text">
-                                    <h5>{{$comment->author->name}}</h5>
-
+                                    <h5>{{$comment->getAuthor()->getName()}}</h5>
                                     <p class="comment-date">
-                                        {{$comment->created_at->diffForHumans()}}
+                                        {{--  {{$comment->created_at->diffForHumans()}}--}}
+                                        {{--  {{$comment->created_at->diffForHumans()}}--}}
+                                        Время
                                     </p>
 
 
-                                    <p class="para">{{$comment->text}}</p>
+                                    <p class="para">{{$comment->getText()}}</p>
                                 </div>
                             </div>
                         @endforeach
-                    @endif--}}
+                    @endif
 
                 <!-- end bottom comment-->
 
-                    {{-- @if(Auth::check())
-                         <div class="leave-comment"><!--leave comment-->
-                             <h4>Leave a reply</h4>
+                    @if(Auth::check())
+                        <div class="leave-comment"><!--leave comment-->
+                            <h4>Оставьте комментарий:</h4>
 
 
-                             <form class="form-horizontal contact-form" role="form" method="post" action="/comment">
-                                 {{csrf_field()}}
-                                 <input type="hidden" name="post_id" value="{{$post->id}}">
-                                 <div class="form-group">
-                                     <div class="col-md-12">
+                            <form class="form-horizontal contact-form" role="form" method="post"
+                                  action="{{route('frontend.comment')}}">
+                                {{csrf_field()}}
+                                <input type="hidden" name="post_id" value="{{$post->getId()}}">
+                                <div class="form-group">
+                                    <div class="col-md-12">
                                              <textarea class="form-control" rows="6" name="message"
-                                                       placeholder="Write Massage"></textarea>
-                                     </div>
-                                 </div>
-                                 <button class="btn send-btn">Post Comment</button>
-                             </form>
-                         </div><!--end leave comment-->
-                     @endif--}}
+                                                       placeholder="Ваше сообщение"></textarea>
+                                    </div>
+                                </div>
+                                <button class="btn send-btn">Post Comment</button>
+                            </form>
+                        </div><!--end leave comment-->
+                    @endif
 
                 </div>
                 @include('frontend.layout._sidebar')

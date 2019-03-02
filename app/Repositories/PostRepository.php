@@ -168,6 +168,17 @@ class PostRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * @return mixed
+     * TODO delete method
+     */
+    public function getAllComment()
+    {
+        $query = "SELECT p FROM App\Entities\Post p  LEFT JOIN App\Entities\Comment c ON p.id = c.post_id";
+        return $query = $this->em->createQuery($query)
+            ->getResult();
+    }
+
     public function query()
     {
         //$query = 'SELECT u FROM App\Entities\Post u';
