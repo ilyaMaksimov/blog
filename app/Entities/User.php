@@ -92,11 +92,6 @@ class User implements AuthenticatableContract, CanResetPasswordContract
         return $this->is_admin;
     }
 
-    public function setIsAdmin(bool $status): void
-    {
-        $this->is_admin = $status;
-    }
-
     public function getAvatar()
     {
         return $this->avatar;

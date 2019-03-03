@@ -23,14 +23,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       view()->composer('frontend.layout._sidebar', function ($view){
-           $postRepository = new PostRepository($this->app['em'], $this->app['em']->getClassMetaData(Post::class));
-           $categoryRepository =  new CategoryRepository($this->app['em'], $this->app['em']->getClassMetaData(Category::class));
+        view()->composer('frontend.layout._sidebar', function ($view) {
+            $postRepository = new PostRepository($this->app['em'], $this->app['em']->getClassMetaData(Post::class));
+            $categoryRepository = new CategoryRepository($this->app['em'], $this->app['em']->getClassMetaData(Category::class));
 
-           $view->with('categories', $categoryRepository->findAll());
-           $view->with('featuredPosts', $postRepository->findBy(['is_featured'=>1]));
-           $view->with('recentPosts', $postRepository->recentPosts());
-       });
+            $view->with('categories', $categoryRepository->findAll());
+            $view->with('featuredPosts', $postRepository->findBy(['is_featured' => 1]));
+            $view->with('recentPosts', $postRepository->recentPosts());
+        });
+
+        view()->composer('admin.layout._sidebar', function ($view) {
+            $commentRepository = new CommentRepository($this->app['em'], $this->app['em']->getClassMetaData(Post::class));
+
+            $view->with('newCommentsCount', count($commentRepository->findByStatus(Comment::STATUS_WAITING_VERIFICATION)));
+        });
     }
 
     /**

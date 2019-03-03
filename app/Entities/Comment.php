@@ -23,14 +23,9 @@ class Comment
 
     /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue */
     protected $id;
+
     /** @ORM\Column(type="string") */
     protected $text;
-    /* @ORM\Column(type="integer") */
-    /*
-     * One Product has One Shipment.
-     * @ORM\OneToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
@@ -45,11 +40,12 @@ class Comment
      * @var Post
      */
     protected $post_id;
+
     /** @ORM\Column(type="boolean") */
     protected $status;
+
     /** @ORM\Column(type="date") */
     protected $date;
-
 
     /**
      * @param Post $post_id
@@ -115,7 +111,6 @@ class Comment
         return $this->post_id;
     }
 
-
     /**
      * @return bool
      */
@@ -146,5 +141,15 @@ class Comment
     public function setDate(\DateTime $date): void
     {
         $this->date = $date;
+    }
+
+    public function toggleStatus(): void
+    {
+        // dd($this->status);
+        if ($this->status == self::STATUS_WAITING_VERIFICATION) {
+            $this->status = self::STATUS_PUBLIC;
+        } else {
+            $this->status = self::STATUS_WAITING_VERIFICATION;
+        }
     }
 }

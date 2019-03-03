@@ -78,6 +78,7 @@
                 <!--related post carousel-->
                     @if(!empty($post->getComments()))
                         @foreach($post->getComments() as $comment)
+                            @if($comment->isStatus() == \App\Entities\Comment::STATUS_PUBLIC)
                             <div class="bottom-comment"><!--bottom comment-->
                                 <div class="comment-img">
                                     <img class="img-circle" src="{{$comment->getAuthor()->getPathAvatar()}}" alt=""
@@ -111,6 +112,7 @@
                                     <p class="para">{{$comment->getText()}}</p>
                                 </div>
                             </div>
+                            @endif
                         @endforeach
                     @endif
 

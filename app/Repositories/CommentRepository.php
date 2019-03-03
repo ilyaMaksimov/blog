@@ -52,9 +52,32 @@ class CommentRepository extends EntityRepository
      */
     public function delete($id)
     {
-        $tag = $this->em->find(self::ENTITY_NAME, $id);
+        $comment = $this->em->find(self::ENTITY_NAME, $id);
 
-        $this->em->remove($tag);
+        $this->em->remove($comment);
         $this->em->flush();
+    }
+
+    /**
+     * @param $id
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     */
+    public function toggleStatus($id)
+    {
+        $comment = $this->em->find(self::ENTITY_NAME, $id);
+        $comment->toggleStatus();
+
+        $this->em->persist($comment);
+        $this->em->flush();
+    }
+
+    public function findByStatus(bool $status)
+    {
+        $query = "SELECT c FROM App\Entities\Comment c WHERE c.status = :status";
+        return $query = $this->em->createQuery($query)
+            ->setParameter(':status', $status)
+            ->getResult();
     }
 }

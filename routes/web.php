@@ -16,9 +16,14 @@ Route::group(['namespace' => 'Frontend'], function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
     Route::get('', 'DashboardController@index')->name('dashboard');
+
     Route::resource('/category', 'CategoryController');
     Route::resource('/tag', 'TagController');
     Route::resource('/post', 'PostController');
+
+    Route::get('/comments', 'CommentController@index')->name('comments');
+    Route::delete('/comment/{id}', 'CommentController@destroy')->name('comment.destroy');
+    Route::get('/comment/toggle/{id}', 'CommentController@toggle')->name('comment.toggle');
 });
 
 Auth::routes();
