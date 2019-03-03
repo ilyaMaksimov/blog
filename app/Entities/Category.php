@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="doc_categories")
+ * @ORM\Table(name="categories")
  *
  * @property int $id
  * @property string $title

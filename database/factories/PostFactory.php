@@ -7,14 +7,12 @@ $factory->define(Post::class, function (Faker $faker) {
     return [
         'title' => $name = $faker->name,
         'slug' => str_slug($name),
-        'description' => $faker->text(50),
-        'content' => $faker->text(),
-
-        'image' => $faker->imageUrl(),
-        'category_id' => 1,
-        'status' => $faker->boolean,
+        'description' => $faker->text(250),
+        'content' => $faker->realText(2200),
+        'image' => null,
         'views' => $faker->randomNumber(),
         'is_featured' => $faker->boolean,
-        'date' => $faker->date(),
+        'is_public' => 1,
+        'date' => $faker->dateTime,
     ];
 });

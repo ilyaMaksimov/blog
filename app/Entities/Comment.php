@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="doc_comments")
+ * @ORM\Table(name="comments")
  * @package App\Entities
  *
  * @property int $id

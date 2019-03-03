@@ -34,7 +34,6 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('admin.layout._sidebar', function ($view) {
             $commentRepository = new CommentRepository($this->app['em'], $this->app['em']->getClassMetaData(Post::class));
-
             $view->with('newCommentsCount', count($commentRepository->findByStatus(Comment::STATUS_WAITING_VERIFICATION)));
         });
     }

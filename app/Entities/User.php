@@ -14,7 +14,7 @@ use LaravelDoctrine\ORM\Notifications\Notifiable;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="doc_users")
+ * @ORM\Table(name="users")
  *
  * @property int $id
  * @property string $email

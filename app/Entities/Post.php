@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="doc_posts")
+ * @ORM\Table(name="posts")
  *
  * @property int $id
  * @property string $title
@@ -69,7 +69,7 @@ class Post
     protected $views;//, fetch="EAGER"
     /**
      * @ORM\ManyToMany(targetEntity="Tag" , fetch="EAGER")
-     * @ORM\JoinTable(name="doc_post_tags",
+     * @ORM\JoinTable(name="post_tags",
      *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
      *      )

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="doc_tags")
+ * @ORM\Table(name="tags")
  * @package App\Entities
  *
  * @property int $id
