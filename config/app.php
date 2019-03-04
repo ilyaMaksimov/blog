@@ -181,6 +181,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        // Image
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -235,8 +237,10 @@ return [
 
         // Doctrine
         'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
-        'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
-        'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
+        'Registry' => LaravelDoctrine\ORM\Facades\Registry::class,
+        'Doctrine' => LaravelDoctrine\ORM\Facades\Doctrine::class,
+        //Image
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

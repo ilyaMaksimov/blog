@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Image
 {
-    const SAVE_DIRECTORY = '/uploads/';
+    const SAVE_DIRECTORY = 'uploads/';
     const DEFAULT_IMAGE = '/img/no-image.png';
 
     private $name;
@@ -18,7 +18,7 @@ class Image
             return self::DEFAULT_IMAGE;
         }
 
-        return self::SAVE_DIRECTORY . $image;
+        return '/'.self::SAVE_DIRECTORY . $image;
     }
 
     public function generateName($mimeType)
@@ -39,8 +39,14 @@ class Image
             /** @var UploadedFile $image */
             $this->name = $filename = $this->generateName($image->extension());
             $this->store($image, $filename);
-
+            $this->fit();
         }
+    }
+
+    public function fit()
+    {
+        \Intervention\Image\Facades\Image::make(public_path('/'.self::SAVE_DIRECTORY .$this->name))
+            ->fit(700, 400)->save(self::SAVE_DIRECTORY.$this->name);
     }
 
     public function update($uploadImage, $currentImage)
@@ -56,13 +62,13 @@ class Image
     public function remove($image)
     {
         if ($image != null) {
-            Storage::delete('uploads/' . $image);
+            Storage::delete(self::SAVE_DIRECTORY. $image);
         }
     }
 
 
     private function store(UploadedFile $uploadedFile, string $filename)
     {
-        $uploadedFile->storeAs(self::SAVE_DIRECTORY, $filename);
+        $uploadedFile->storeAs('/'.self::SAVE_DIRECTORY, $filename);
     }
 }

@@ -44,11 +44,6 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
-    public function show()
-    {
-
-    }
-
     public function edit($id)
     {
         $post = $this->postRepository->find($id);

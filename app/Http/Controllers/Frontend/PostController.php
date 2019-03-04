@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
+use Dropbox\Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
 {
@@ -15,7 +17,8 @@ class PostController extends Controller
     public function __construct(
         PostRepository $postRepository,
         CategoryRepository $categoryRepository
-    ) {
+    )
+    {
         $this->postRepository = $postRepository;
         $this->categoryRepository = $categoryRepository;
     }
@@ -37,13 +40,24 @@ class PostController extends Controller
 
     public function tag($slug)
     {
-        $posts = $this->postRepository->findBySlugTag($slug);
+        $posts = $this->postRepository->findBySlugTagAndPaginate($slug, 2, $request['page'] ?? 1);
+
+        if ($posts->isEmpty()) {
+            throw new NotFoundHttpException('Такого тега не существует!');
+        }
+
         return view('frontend.post.list', compact('posts'));
     }
 
-    public function category($slug)
+
+    public function category(Request $request, $slug)
     {
-        $posts = $this->postRepository->findBySlugCategory($slug);
+        $posts = $this->postRepository->findBySlugCategoryAndPaginate($slug, 2, $request['page'] ?? 1);
+
+        if ($posts->isEmpty()) {
+            throw new NotFoundHttpException('Такой категории не существует!');
+        }
+
         return view('frontend.post.list', compact('posts'));
     }
 }

@@ -50,6 +50,7 @@ class PostRepository extends EntityRepository
 
         $image = new Image();
         $image->save($request['image']);
+        $image->fit();
         $post->setImage($image->getName());
 
         $tags = $this->em->getRepository('App\Entities\Tag')->findBy(['id' => $request['tags']]);
@@ -139,20 +140,22 @@ class PostRepository extends EntityRepository
         return $query->execute();
     }
 
-    public function findBySlugTag($slug)
+    public function findBySlugTagAndPaginate(string $slug, int $limit = 8, int $page = 1): LengthAwarePaginator
     {
         $query = 'SELECT p FROM App\Entities\Post p  JOIN p.tags c WHERE c.slug = :slug';
-        return $query = $this->em->createQuery($query)
-            ->setParameter(':slug', $slug)
-            ->getResult();
+        $query = $this->em->createQuery($query)
+            ->setParameter(':slug', $slug);
+
+        return $this->paginate($query, $limit, $page);
     }
 
-    public function findBySlugCategory($slug)
+    public function findBySlugCategoryAndPaginate(string $slug, int $limit = 8, int $page = 1): LengthAwarePaginator
     {
         $query = "SELECT p FROM App\Entities\Post p  JOIN p.category c WHERE c.slug = :slug";
-        return $query = $this->em->createQuery($query)
-            ->setParameter(':slug', $slug)
-            ->getResult();
+        $query = $this->em->createQuery($query)
+            ->setParameter(':slug', $slug);
+
+        return $this->paginate($query, $limit, $page);
     }
 
     public function recentPosts()
@@ -184,17 +187,23 @@ class PostRepository extends EntityRepository
     }
 
 
-    public function findAll($results = 10, $pageName = 'page')
+    public function findAll1($slug, $results = 10, $pageName = 'page')
     {
-        $query = $this->createQueryBuilder('t')
+        $query = $this->createQueryBuilder('p')
+            // ->leftJoin('p.category', 'c.slug', 'ON')
+            ->join('p.category', 'c', 'ON')
+            ->where('c.slug = :slug')
+            //->orderBy('s.name', 'asc')
+            ->setParameter('slug', $slug)
             /*   ->select('t', 'f', 'c')
-               ->leftJoin('t.first', 'f', 'ON')
+               ->
                ->leftJoin('t.category', 'c', 'ON')
                ->orderBy('t.createdAt', 'asc')*/
             ->getQuery();
 
         return $this->paginate($query, $results, $pageName);
     }
+
     public function findAll2($results = 10, $pageName = 'page')
     {
         return $query = $this->createQueryBuilder('t')
@@ -204,7 +213,7 @@ class PostRepository extends EntityRepository
                ->orderBy('t.createdAt', 'asc')*/
             ->getQuery();
 
-         //$this->paginate($query, $results, $pageName);
+        //$this->paginate($query, $results, $pageName);
     }
 
 

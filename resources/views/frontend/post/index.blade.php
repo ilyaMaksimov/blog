@@ -36,7 +36,7 @@
                             </div>
                         </article>
                     @endforeach
-<div class="text-center">{{$posts->links()}}</div>
+                        <div class="text-center">{{$posts->links()}}</div>
 
                 </div>
                 @include('frontend.layout._sidebar')
