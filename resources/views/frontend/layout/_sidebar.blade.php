@@ -3,36 +3,46 @@
 
         <aside class="widget news-letter">
             <h3 class="widget-title text-uppercase text-center">Get Newsletter</h3>
-           {{-- @include('admin.errors')--}}
+            {{-- @include('admin.errors')--}}
 
-            <form action="/subscribe" method="post">
+            <form action="{{route('subscribe')}}" method="post">
                 {{csrf_field()}}
-                <input type="email" placeholder="Your email address" name="email">
+                <div>
+                    <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                           name="email" value="{{ old('email') }}" placeholder="Your email address" required>
+
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
                 <input type="submit" value="Subscribe Now"
                        class="text-uppercase text-center btn btn-subscribe">
             </form>
 
         </aside>
-        <aside class="widget">
-            <h3 class="widget-title text-uppercase text-center">Популярные посты</h3>
-            {{--@foreach($popularPosts as $post)
-                <div class="popular-post">
+        {{--    <aside class="widget">
+                <h3 class="widget-title text-uppercase text-center">Популярные посты</h3>
+                --}}{{--@foreach($popularPosts as $post)
+                    <div class="popular-post">
 
 
-                    <a href="{{route('post.show', $post->slug)}}" class="popular-img"><img src="{{$post->getImage()}}" alt="">
+                        <a href="{{route('post.show', $post->slug)}}" class="popular-img"><img src="{{$post->getImage()}}" alt="">
 
-                        <div class="p-overlay"></div>
-                    </a>
+                            <div class="p-overlay"></div>
+                        </a>
 
-                    <div class="p-content">
-                        <a href="{{route('post.show', $post->slug)}}" class="text-uppercase">{{$post->title}}</a>
-                        <span class="p-date">{{$post->getDate()}}</span>
+                        <div class="p-content">
+                            <a href="{{route('post.show', $post->slug)}}" class="text-uppercase">{{$post->title}}</a>
+                            <span class="p-date">{{$post->getDate()}}</span>
 
+                        </div>
                     </div>
-                </div>
 
-            @endforeach--}}
-        </aside>
+                @endforeach--}}{{--
+            </aside>--}}
         <aside class="widget">
             <h3 class="widget-title text-uppercase text-center">Рекомендованные посты</h3>
 
@@ -42,7 +52,8 @@
                         <div class="feature-content">
                             <img src="{{\App\Components\Image::getPath($post->getImage())}}" alt="">
 
-                            <a href="{{route('frontend.post.show', $post->getSlug())}}" class="overlay-text text-center">
+                            <a href="{{route('frontend.post.show', $post->getSlug())}}"
+                               class="overlay-text text-center">
                                 <h5 class="text-uppercase">{{$post->getTitle()}}</h5>
 
                                 <p>{!!$post->getDescription()!!}</p>
@@ -60,12 +71,14 @@
 
                     <div class="media">
                         <div class="media-left">
-                            <a href="{{route('frontend.post.show', $post->getSlug())}}" class="popular-img"><img src="{{\App\Components\Image::getPath($post->getImage())}}" alt="">
+                            <a href="{{route('frontend.post.show', $post->getSlug())}}" class="popular-img"><img
+                                        src="{{\App\Components\Image::getPath($post->getImage())}}" alt="">
                                 <div class="p-overlay"></div>
                             </a>
                         </div>
                         <div class="p-content">
-                            <a href="{{route('frontend.post.show', $post->getSlug())}}" class="text-uppercase">{{$post->getTitle()}}</a>
+                            <a href="{{route('frontend.post.show', $post->getSlug())}}"
+                               class="text-uppercase">{{$post->getTitle()}}</a>
                             <span class="p-date">{{$post->getDate()}}</span>
                         </div>
                     </div>
@@ -78,8 +91,8 @@
                 @foreach($categories as $category)
                     <li>
                         <a href="{{route('frontend.category.show', $category->getSlug())}}">{{$category->getTitle()}}</a>
-                      {{--  <span class="post-count pull-right"> ({{$category->posts()->count()}})</span>--}}
-                    {{--    <span class="post-count pull-right"> (12)</span>--}}
+                        {{--  <span class="post-count pull-right"> ({{$category->posts()->count()}})</span>--}}
+                        {{--    <span class="post-count pull-right"> (12)</span>--}}
                     </li>
                 @endforeach
             </ul>

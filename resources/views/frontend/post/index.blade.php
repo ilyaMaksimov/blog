@@ -3,6 +3,7 @@
 @section('content')
     <div class="main-content">
         <div class="container">
+
             <div class="row">
                 <div class="col-md-8">
                     @foreach($posts as $post)
@@ -35,8 +36,8 @@
                             </div>
                         </article>
                     @endforeach
+<div class="text-center">{{$posts->links()}}</div>
 
-                    {{--{{$posts->links()}}--}}
                 </div>
                 @include('frontend.layout._sidebar')
             </div>

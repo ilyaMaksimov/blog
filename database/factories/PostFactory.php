@@ -7,8 +7,8 @@ $factory->define(Post::class, function (Faker $faker) {
     return [
         'title' => $name = $faker->name,
         'slug' => str_slug($name),
-        'description' => $faker->text(250),
-        'content' => $faker->realText(2200),
+        'description' => $faker->text(100),
+        'content' => $faker->realText(200),
         'image' => null,
         'views' => $faker->randomNumber(),
         'is_featured' => $faker->boolean,

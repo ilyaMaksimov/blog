@@ -5,11 +5,13 @@ namespace App\Providers;
 use App\Entities\Category;
 use App\Entities\Comment;
 use App\Entities\Post;
+use App\Entities\Subscribe;
 use App\Entities\Tag;
 use App\Entities\User;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\PostRepository;
+use App\Repositories\SubscribeRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -77,6 +79,13 @@ class AppServiceProvider extends ServiceProvider
             return new CommentRepository(
                 $app['em'],
                 $app['em']->getClassMetaData(Comment::class)
+            );
+        });
+
+        $this->app->bind(SubscribeRepository::class, function ($app) {
+            return new SubscribeRepository(
+                $app['em'],
+                $app['em']->getClassMetaData(Subscribe::class)
             );
         });
     }

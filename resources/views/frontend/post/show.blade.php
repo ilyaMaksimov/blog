@@ -5,11 +5,6 @@
     <div class="main-content">
         <div class="container">
             <div class="row">
-                @if(session('status'))
-                    <div class="alert alert-success">
-                        {{session('status')}}
-                    </div>
-                @endif
                 <div class="col-md-8">
 
                     <article class="post">
@@ -79,39 +74,40 @@
                     @if(!empty($post->getComments()))
                         @foreach($post->getComments() as $comment)
                             @if($comment->isStatus() == \App\Entities\Comment::STATUS_PUBLIC)
-                            <div class="bottom-comment"><!--bottom comment-->
-                                <div class="comment-img">
-                                    <img class="img-circle" src="{{$comment->getAuthor()->getPathAvatar()}}" alt=""
-                                         width="75" height="75">
+                                <div class="bottom-comment"><!--bottom comment-->
+                                    <div class="comment-img">
+                                        <img class="img-circle" src="{{$comment->getAuthor()->getPathAvatar()}}" alt=""
+                                             width="75" height="75">
 
+                                    </div>
+                                    @if(\Illuminate\Support\Facades\Gate::forUser(\Illuminate\Support\Facades\Auth::user())->allows('author-comment',$comment->getAuthor()))
+                                        <div class="text-right">
+                                            {{Form::open(['route'=>['frontend.comment.destroy', $comment->getId()], 'method'=>'delete'])}}
+                                            <button onclick="return confirm('Удалить комментарий?')" type="submit"
+                                                    class="delete">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                            {{Form::close()}}
+
+                                        </div>
+                                    @endif
+
+                                    {{-- <div class="text-right">
+                                    <a href="{{route('frontend.comment.delete', $comment->getId() )}}">Удалить</a>
+                                    </div>
+     --}}
+                                    <div class="comment-text">
+                                        <h5>{{$comment->getAuthor()->getName()}}</h5>
+                                        <p class="comment-date">
+                                            {{--  {{$comment->created_at->diffForHumans()}}--}}
+                                            {{--  {{$comment->created_at->diffForHumans()}}--}}
+                                            Время
+                                        </p>
+
+
+                                        <p class="para">{{$comment->getText()}}</p>
+                                    </div>
                                 </div>
-                                @if(\Illuminate\Support\Facades\Gate::forUser(\Illuminate\Support\Facades\Auth::user())->allows('author-comment',$comment->getAuthor()))
-                                <div class="text-right">
-                                    {{Form::open(['route'=>['frontend.comment.destroy', $comment->getId()], 'method'=>'delete'])}}
-                                    <button onclick="return confirm('Удалить комментарий?')" type="submit" class="delete">
-                                        <i class="fa fa-remove"></i>
-                                    </button>
-                                    {{Form::close()}}
-
-                                </div>
-                                @endif
-
-                               {{-- <div class="text-right">
-                               <a href="{{route('frontend.comment.delete', $comment->getId() )}}">Удалить</a>
-                               </div>
---}}
-                                <div class="comment-text">
-                                    <h5>{{$comment->getAuthor()->getName()}}</h5>
-                                    <p class="comment-date">
-                                        {{--  {{$comment->created_at->diffForHumans()}}--}}
-                                        {{--  {{$comment->created_at->diffForHumans()}}--}}
-                                        Время
-                                    </p>
-
-
-                                    <p class="para">{{$comment->getText()}}</p>
-                                </div>
-                            </div>
                             @endif
                         @endforeach
                     @endif

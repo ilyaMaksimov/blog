@@ -9,6 +9,8 @@ use App\Components\Image;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Dropbox\Exception;
+use Illuminate\Pagination\LengthAwarePaginator;
+use LaravelDoctrine\ORM\Pagination\PaginatesFromParams;
 
 class PostRepository extends EntityRepository
 {
@@ -168,6 +170,44 @@ class PostRepository extends EntityRepository
             ->getResult();
     }
 
+    use PaginatesFromParams;
+
+    /**
+     * @param int $limit
+     * @param int $page
+     * @return LengthAwarePaginator
+     */
+    public function all(int $limit = 8, int $page = 1): LengthAwarePaginator
+    {
+        // paginateAll is already public, you may use it directly as well.
+        return $this->paginateAll($limit, $page);
+    }
+
+
+    public function findAll($results = 10, $pageName = 'page')
+    {
+        $query = $this->createQueryBuilder('t')
+            /*   ->select('t', 'f', 'c')
+               ->leftJoin('t.first', 'f', 'ON')
+               ->leftJoin('t.category', 'c', 'ON')
+               ->orderBy('t.createdAt', 'asc')*/
+            ->getQuery();
+
+        return $this->paginate($query, $results, $pageName);
+    }
+    public function findAll2($results = 10, $pageName = 'page')
+    {
+        return $query = $this->createQueryBuilder('t')
+            /*   ->select('t', 'f', 'c')
+               ->leftJoin('t.first', 'f', 'ON')
+               ->leftJoin('t.category', 'c', 'ON')
+               ->orderBy('t.createdAt', 'asc')*/
+            ->getQuery();
+
+         //$this->paginate($query, $results, $pageName);
+    }
+
+
     /**
      * @return mixed
      * TODO delete method
@@ -190,7 +230,6 @@ class PostRepository extends EntityRepository
             ->setParameter(':slug', 321)
             ->getResult();
     }
-
 
 
 }

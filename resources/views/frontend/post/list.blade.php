@@ -8,7 +8,7 @@
                 <div class="col-md-8">
                     <div class="row">
                         @foreach($posts as $post)
-                            <div class="col-md-6">
+                            {{--<div class="col-md-6">
                                 <article class="post post-grid">
                                     <div class="post-thumb">
                                         <a href="{{route('frontend.post.show', $post->getSlug())}}"><img
@@ -45,7 +45,25 @@
                                     </div>
 
                                 </article>
-                            </div>
+                            </div>--}}
+
+
+                                <div class="col-md-6 ">
+                                    <div class="thumbnail">
+                                        {{--<div class="imageGallery"
+                                             style="background-image: url('uploads/IcHFX2ojBe.jpeg')">
+                                        </div>--}}
+                                        <a href="{{route('frontend.post.show', $post->getSlug())}}">
+                                            <img height="150" src="{{\App\Components\Image::getPath($post->getImage())}}" alt="" class="{{--img-rounded --}}img-responsive"></a>
+                                        <img src="..." alt="...">
+                                        <div class="caption">
+                                            <h3>Thumbnail label</h3>
+                                            <p>...</p>
+                                            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+
                         @endforeach
 
                     </div>

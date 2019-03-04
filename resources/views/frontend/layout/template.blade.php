@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- favicon icon -->
@@ -71,6 +71,21 @@
     <!-- /.container-fluid -->
 </nav>
 
+@if(session('status'))
+    <div class="container">
+        <div class="alert alert-success">
+            {{session('status')}}
+        </div>
+    </div>
+@endif
+@if(session('danger'))
+    <div class="container">
+        <div class="alert alert-danger">
+            {{session('danger')}}
+        </div>
+    </div>
+@endif
+
 @yield('content')
 
 <!--footer start-->
@@ -110,7 +125,7 @@
 </div>
 
 <footer class="footer-widget-section">
-    <div class="container">
+   {{-- <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <aside class="footer-widget">
@@ -222,13 +237,13 @@
                 </aside>
             </div>
         </div>
-    </div>
+    </div>--}}
     <div class="footer-copy">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="text-center">&copy; 2017 <a href="#">Blog, </a> Designed with <i
-                                class="fa fa-heart"></i> by <a href="#">Marlin</a>
+                    <div class="text-center">&copy; 2019 <a href="#">Blog, </a> Designed with <i
+                                class="fa fa-heart"></i> by <a href="#">{{env('NAME_AUTHOR')}}</a>
                     </div>
                 </div>
             </div>

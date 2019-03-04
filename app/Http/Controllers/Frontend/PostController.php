@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-
     private $postRepository;
     private $categoryRepository;
 
@@ -21,13 +20,9 @@ class PostController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $posts = $this->postRepository->getAll();
-        // $posts = $this->postRepository->getAll()[0]->getComments()[0]->getAuthor()->getName();
-        //$posts = $this->postRepository->getAll()[0];
-        //dd($posts);
-        //$posts = $this->postRepository->getAll();
+        $posts = $this->postRepository->paginateAll(2, $request['page'] ?? 1);
         return view('frontend.post.index', compact('posts'));
     }
 
