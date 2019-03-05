@@ -23,9 +23,7 @@ class Image
     public function __construct($image)
     {
         $this->image = $image;
-        if (!is_null($this->image)) {
-            $this->name = $this->generateName($this->image->extension());
-        }
+        $this->name = $this->generateName();
     }
 
     public static function getPath($image)
@@ -37,7 +35,8 @@ class Image
         return '/' . self::SAVE_DIRECTORY . $image;
     }
 
-    public static function remove(string $nameImage)
+
+    public static function remove(?string $nameImage)
     {
         if (!is_null($nameImage)) {
             Storage::delete(self::SAVE_DIRECTORY . $nameImage);
@@ -71,13 +70,18 @@ class Image
             self::remove($currentImage);
             $this->saveToDirectory();
         }
+
+        if (is_null($this->name) && !is_null($currentImage)) {
+            $this->name = $currentImage;
+        }
     }
 
-    private function generateName($mimeType)
+    private function generateName()
     {
-        return str_random(10) . '.' . $mimeType;
+        if (!is_null($this->image)) {
+            return str_random(10) . '.' . $this->image->extension();
+        }
+
+        return null;
     }
-
-
-
 }

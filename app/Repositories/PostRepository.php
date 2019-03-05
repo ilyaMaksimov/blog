@@ -30,6 +30,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * Add post
      * @param $request
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -61,6 +62,8 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * Update post
+     *
      * @param $request
      * @param $id
      * @throws \Doctrine\ORM\ORMException
@@ -81,9 +84,9 @@ class PostRepository extends EntityRepository
 
         $image = new Image($request['image']);
         $image->update($post->getImage());
-        $image->compressionToStandardSize();
+        //$image->compressionToStandardSize();
         $post->setImage($image->getName());
-
+//dd($image->getName());
         $category = $this->em->find(Category::class, $request['category']);
         $post->setCategory($category);
 
@@ -95,6 +98,8 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * Delete post
+     *
      * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -123,6 +128,15 @@ class PostRepository extends EntityRepository
             ->setParameter('id', $post->getId())
             ->getQuery();
         return $query->execute();
+    }
+
+    public function getPublicPostAndPaginate(int $limit = 8, int $page = 1): LengthAwarePaginator
+    {
+        $query = 'SELECT p FROM App\Entities\Post p WHERE p.is_public = :public';
+        $query = $this->em->createQuery($query)
+            ->setParameter(':public', Post::STATUS_PUBLIC);
+
+        return $this->paginate($query, $limit, $page);
     }
 
     public function findBySlugTagAndPaginate(string $slug, int $limit = 8, int $page = 1): LengthAwarePaginator

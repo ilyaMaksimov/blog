@@ -2,22 +2,27 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Entities\Post;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
-use Dropbox\Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+
+/**
+ * Class PostController
+ * @package App\Http\Controllers\Frontend
+ *
+ * @property PostRepository $postRepository
+ * @property CategoryRepository $categoryRepository
+ */
 class PostController extends Controller
 {
     private $postRepository;
     private $categoryRepository;
 
-    public function __construct(
-        PostRepository $postRepository,
-        CategoryRepository $categoryRepository
-    )
+    public function __construct(PostRepository $postRepository, CategoryRepository $categoryRepository)
     {
         $this->postRepository = $postRepository;
         $this->categoryRepository = $categoryRepository;
@@ -25,13 +30,18 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
-        $posts = $this->postRepository->paginateAll(2, $request['page'] ?? 1);
+        $posts = $this->postRepository->getPublicPostAndPaginate(2, $request['page'] ?? 1);
         return view('frontend.post.index', compact('posts'));
     }
 
     public function show($slug)
     {
+        /** @var Post $post */
         $post = $this->postRepository->findOneBy(['slug' => $slug]);
+        if (!$post) {
+            throw new NotFoundHttpException('Такого поста не существует!');
+        }
+
         $relatedPosts = $this->postRepository->related($post);
 
         return view('frontend.post.show', compact('post', 'relatedPosts'));
