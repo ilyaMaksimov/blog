@@ -14,6 +14,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('/comment', 'CommentController@store')->name('frontend.comment');
     Route::delete('/comment/{id}', 'CommentController@destroy')->name('frontend.comment.destroy');
 
+    Route::get('/portfolio', 'HomeController@portfolio')->name('portfolio');
+    Route::get('/about-me', 'HomeController@aboutMe')->name('aboutMe');
+
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
@@ -25,6 +28,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
 
     Route::get('/comments', 'CommentController@index')->name('comments');
     Route::delete('/comment/{id}', 'CommentController@destroy')->name('comment.destroy');
+
+    Route::get('/users', 'UserController@index')->name('users.index');
+    Route::delete('/user/{id}', 'UserController@destroy')->name('user.destroy');
+
+    Route::get('/subscribers', 'SubscribeController@index')->name('subscribers.index');
+    Route::delete('/subscribe/{id}', 'Subscribe@destroy')->name('subscriber.destroy');
+
+
     Route::get('/comment/toggle/{id}', 'CommentController@toggle')->name('comment.toggle');
 });
 

@@ -1,5 +1,5 @@
  <ul class="sidebar-menu">
-    <li class="header">MAIN NAVIGATION</li>
+    <li class="header">ОСНОВНАЯ НАВИГАЦИЯ</li>
     <li class="treeview">
       <a href="{{route('dashboard') }}">
         <i class="fa fa-dashboard"></i> <span>Админ-панель</span>
@@ -16,7 +16,7 @@
         </span>
       </a>
     </li>
-    <li><a href="{{--{{route('users.index')}}--}}"><i class="fa fa-users"></i> <span>Пользователи</span></a></li>
-    <li><a href="{{--{{route('subscribers.index')}}--}}"><i class="fa fa-user-plus"></i> <span>Подписчики</span></a></li>
+    <li><a href="{{route('users.index')}}"><i class="fa fa-users"></i> <span>Пользователи</span></a></li>
+    <li><a href="{{route('subscribers.index')}}"><i class="fa fa-user-plus"></i> <span>Подписчики</span></a></li>
 
 </ul>

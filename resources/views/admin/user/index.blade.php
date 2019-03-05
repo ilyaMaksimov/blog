@@ -1,14 +1,13 @@
 @extends('admin.layout.template')
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div>
                 <ol class="breadcrumb">
                     <li><a href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="active">Комментарии</li>
+                    <li class="active">Пользователи</li>
                 </ol>
             </div>
         </section>
@@ -19,41 +18,45 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Комментарии</h3>
+                    <h3 class="box-title">Пользователи</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    {{--<div class="form-group">
-                        <a href="create.html" class="btn btn-success">Добавить</a>
-                    </div>--}}
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Текст</th>
+                            <th>Имя</th>
+                            <th>E-mail</th>
+                            <th>Аватар</th>
                             <th>Действия</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($comments as $comment)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{$comment->getId()}}</td>
-                                <td>{{$comment->getText()}}
+                                <td>{{$user->getId()}}</td>
+                                <td>{{$user->getName()}}
+                                    @if($user->isAdmin())
+                                        <span class="label label-danger">Admin</span>
+                                    @endif
+                                </td>
+                                <td>{{$user->getEmail()}}</td>
+                                <td>
+                                    <img src="{{$user->getPathAvatar()}}" alt="" class="img-responsive" width="150">
                                 </td>
                                 <td>
-                                    @if($comment->isStatus() == \App\Entities\Comment::STATUS_WAITING_VERIFICATION)
-                                        <a href="{{route('comment.toggle', $comment->getId())}}" class="fa fa-lock"></a>
-                                    @else
-                                        <a href="{{route('comment.toggle', $comment->getId())}}" class="fa fa-thumbs-o-up"></a>
-                                    @endif
-                                    {{Form::open(['route'=>['comment.destroy', $comment->getId()], 'method'=>'delete'])}}
+                                    <a href="#" class="fa fa-pencil"></a>
+                                    {{Form::open(['route'=>['user.destroy', $user->getId()], 'method'=>'delete'])}}
                                     <button onclick="return confirm('Точно удалить?')" type="submit" class="delete">
                                         <i class="fa fa-remove"></i>
                                     </button>
 
-                                {{Form::close()}}
+                                    {{Form::close()}}
+                                </td>
                             </tr>
                         @endforeach
+
                         </tfoot>
                     </table>
                 </div>
@@ -64,5 +67,4 @@
         </section>
         <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 @endsection

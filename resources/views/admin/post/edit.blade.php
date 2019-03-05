@@ -34,7 +34,10 @@
                             <label for="exampleInputFile">Лицевая картинка</label>
                             <input type="file" id="exampleInputFile" name="image">
 
-                            <p class="help-block">Какое-нибудь уведомление о форматах..</p>
+                            <p class="help-block">
+                                Сохраняйте картинки больше 1000px в ширину, они автоматически обрежутся до размера
+                                {{config('image.post.width')}} x {{config('image.post.height')}}
+                            </p>
                         </div>
 
                         <div class="form-group">

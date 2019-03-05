@@ -91,6 +91,7 @@ class PostRepository extends EntityRepository
 
         $image = new Image();
         $image->update($request['image'], $post->getImage());
+        $image->fit();
 
         $post->setImage($image->getName());
 

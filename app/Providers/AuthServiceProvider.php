@@ -30,5 +30,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('author-comment', function (User $user, User $authorComent) {
             return $user->getId() == $authorComent->getId();
         });
+
+        Gate::define('admin-panel', function () {
+            return Auth::user()->isAdmin();
+        });
     }
 }

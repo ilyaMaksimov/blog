@@ -39,14 +39,13 @@ class Image
             /** @var UploadedFile $image */
             $this->name = $filename = $this->generateName($image->extension());
             $this->store($image, $filename);
-            $this->fit();
         }
     }
 
     public function fit()
     {
         \Intervention\Image\Facades\Image::make(public_path('/'.self::SAVE_DIRECTORY .$this->name))
-            ->fit(700, 400)->save(self::SAVE_DIRECTORY.$this->name);
+            ->fit(config('image.post.width'), config('image.post.height'))->save(self::SAVE_DIRECTORY.$this->name);
     }
 
     public function update($uploadImage, $currentImage)

@@ -14,6 +14,7 @@ use App\Repositories\PostRepository;
 use App\Repositories\SubscribeRepository;
 use App\Repositories\TagRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -37,6 +38,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('admin.layout._sidebar', function ($view) {
             $commentRepository = new CommentRepository($this->app['em'], $this->app['em']->getClassMetaData(Post::class));
             $view->with('newCommentsCount', count($commentRepository->findByStatus(Comment::STATUS_WAITING_VERIFICATION)));
+        });
+
+        view()->composer('admin.layout.template', function ($view) {
+            $view->with('adminName', Auth::user()->getName());
+            $view->with('avatarPath', Auth::user()->getPathAvatar());
         });
     }
 

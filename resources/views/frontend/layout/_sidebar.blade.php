@@ -2,9 +2,7 @@
     <div class="primary-sidebar">
 
         <aside class="widget news-letter">
-            <h3 class="widget-title text-uppercase text-center">Get Newsletter</h3>
-            {{-- @include('admin.errors')--}}
-
+            <h3 class="widget-title text-uppercase text-center">Получать новости</h3>
             <form action="{{route('subscribe')}}" method="post">
                 {{csrf_field()}}
                 <div>
@@ -18,31 +16,11 @@
                     @endif
                 </div>
 
-                <input type="submit" value="Subscribe Now"
+                <input type="submit" value="Подписаться сейчас"
                        class="text-uppercase text-center btn btn-subscribe">
             </form>
 
         </aside>
-        {{--    <aside class="widget">
-                <h3 class="widget-title text-uppercase text-center">Популярные посты</h3>
-                --}}{{--@foreach($popularPosts as $post)
-                    <div class="popular-post">
-
-
-                        <a href="{{route('post.show', $post->slug)}}" class="popular-img"><img src="{{$post->getImage()}}" alt="">
-
-                            <div class="p-overlay"></div>
-                        </a>
-
-                        <div class="p-content">
-                            <a href="{{route('post.show', $post->slug)}}" class="text-uppercase">{{$post->title}}</a>
-                            <span class="p-date">{{$post->getDate()}}</span>
-
-                        </div>
-                    </div>
-
-                @endforeach--}}{{--
-            </aside>--}}
         <aside class="widget">
             <h3 class="widget-title text-uppercase text-center">Рекомендованные посты</h3>
 
@@ -91,8 +69,6 @@
                 @foreach($categories as $category)
                     <li>
                         <a href="{{route('frontend.category.show', $category->getSlug())}}">{{$category->getTitle()}}</a>
-                        {{--  <span class="post-count pull-right"> ({{$category->posts()->count()}})</span>--}}
-                        {{--    <span class="post-count pull-right"> (12)</span>--}}
                     </li>
                 @endforeach
             </ul>
