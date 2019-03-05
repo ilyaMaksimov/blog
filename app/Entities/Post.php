@@ -70,7 +70,7 @@ class Post
     /**
      * @ORM\ManyToMany(targetEntity="Tag" , fetch="EAGER")
      * @ORM\JoinTable(name="post_tags",
-     *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
+     *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
      *      )
      * @var ArrayCollection|Tag[]

@@ -5,25 +5,43 @@ namespace App\Components;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class Image
+ * @package App\Components
+ *
+ * @property string $name
+ * @property UploadedFile $image
+ */
 class Image
 {
     const SAVE_DIRECTORY = 'uploads/';
     const DEFAULT_IMAGE = '/img/no-image.png';
 
+    private $image;
     private $name;
+
+    public function __construct($image)
+    {
+        $this->image = $image;
+        if (!is_null($this->image)) {
+            $this->name = $this->generateName($this->image->extension());
+        }
+    }
 
     public static function getPath($image)
     {
-        if ($image == null) {
+        if (is_null($image)) {
             return self::DEFAULT_IMAGE;
         }
 
         return '/' . self::SAVE_DIRECTORY . $image;
     }
 
-    public function generateName($mimeType)
+    public static function remove(string $nameImage)
     {
-        return str_random(10) . '.' . $mimeType;
+        if (!is_null($nameImage)) {
+            Storage::delete(self::SAVE_DIRECTORY . $nameImage);
+        }
     }
 
     public function getName()
@@ -31,46 +49,35 @@ class Image
         return $this->name;
     }
 
-    public function saveToDirectory($image)
+    public function compressionToStandardSize()
     {
-        if ($image == null) {
-            $this->name = null;
-        } else {
-            /** @var UploadedFile $image */
-            $this->name = $filename = $this->generateName($image->extension());
-            $this->store($image, $filename);
-        }
-    }
-
-    public function fit()
-    {
-        if ($this->name != null) {
+        if (!is_null($this->name)) {
             \Intervention\Image\Facades\Image::make(public_path('/' . self::SAVE_DIRECTORY . $this->name))
                 ->fit(config('image.post.width'), config('image.post.height'))
                 ->save(self::SAVE_DIRECTORY . $this->name);
         }
     }
 
-    public function update($uploadImage, $currentImage)
+    public function saveToDirectory()
     {
-        if ($uploadImage == null) {
-            $this->name = null;
-        } else {
-            $this->remove($currentImage);
-            $this->saveToDirectory($uploadImage);
+        if (!is_null($this->name)) {
+            $this->image->storeAs('/' . self::SAVE_DIRECTORY, $this->name);
         }
     }
 
-    public function remove($image)
+    public function update($currentImage)
     {
-        if ($image != null) {
-            Storage::delete(self::SAVE_DIRECTORY . $image);
+        if (!is_null($this->name)) {
+            self::remove($currentImage);
+            $this->saveToDirectory();
         }
     }
 
-
-    private function store(UploadedFile $uploadedFile, string $filename)
+    private function generateName($mimeType)
     {
-        $uploadedFile->storeAs('/' . self::SAVE_DIRECTORY, $filename);
+        return str_random(10) . '.' . $mimeType;
     }
+
+
+
 }

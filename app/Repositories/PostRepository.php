@@ -46,10 +46,9 @@ class PostRepository extends EntityRepository
         $post->setIsFeatured($request['is_featured']);
         $post->setDate($request['date']);
 
-        $image = new Image();
-        $image->saveToDirectory($request['image']);
-        $image->fit();
-
+        $image = new Image($request['image']);
+        $image->saveToDirectory();
+        $image->compressionToStandardSize();
         $post->setImage($image->getName());
 
         $tags = $this->em->getRepository(Tag::class)->findBy(['id' => $request['tags']]);
@@ -80,15 +79,14 @@ class PostRepository extends EntityRepository
         $post->setIsPublic($request['is_public']);
         $post->setDate($request['date']);
 
-        $image = new Image();
-        $image->update($request['image'], $post->getImage());
-        $image->fit();
+        $image = new Image($request['image']);
+        $image->update($post->getImage());
+        $image->compressionToStandardSize();
         $post->setImage($image->getName());
 
         $category = $this->em->find(Category::class, $request['category']);
         $post->setCategory($category);
 
-        // Это очень плохое решение?
         $tags = $this->em->getRepository(Tag::class)->findBy(['id' => $request['tags']]);
         $post->getTags()->clear();
         $post->setTags($tags);
@@ -105,9 +103,7 @@ class PostRepository extends EntityRepository
     public function delete(int $id)
     {
         $post = $this->em->find(Post::class, $id);
-
-        $image = new Image();
-        $image->remove($post->getImage());
+        Image::remove($post->getImage());
         $this->em->remove($post);
     }
 
