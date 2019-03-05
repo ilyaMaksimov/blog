@@ -6,10 +6,11 @@ use App\Components\Image;
 use App\Entities\Tag;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserRepository extends EntityRepository
 {
-    private $entityName = 'App\Entities\User';
+    const ENTITY_NAME = 'App\Entities\User';
 
     /** @var EntityManager $em */
     private $em;
@@ -29,7 +30,7 @@ class UserRepository extends EntityRepository
      */
     public function update($request, $id)
     {
-        $user = $this->em->find($this->entityName, $id);
+        $user = $this->em->find(self::ENTITY_NAME, $id);
         $user->setName($request['name']);
         $user->setEmail($request['email']);
 
@@ -40,5 +41,17 @@ class UserRepository extends EntityRepository
 
         $this->em->persist($user);
         $this->em->flush();
+    }
+
+    /**
+     * @param $id
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     */
+    public function delete($id)
+    {
+        $user = $this->em->find(self::ENTITY_NAME, $id);
+        $this->em->remove($user);
     }
 }

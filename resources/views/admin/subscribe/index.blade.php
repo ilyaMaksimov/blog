@@ -27,6 +27,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Email</th>
+                            <th>Статус подтверждения</th>
                             <th>Действия</th>
                         </tr>
                         </thead>
@@ -34,7 +35,13 @@
                         @foreach($subscribers as $subscriber)
                             <tr>
                                 <td>{{$subscriber->getId()}}</td>
-                                <td>{{$subscriber->getEmail()}}
+                                <td>{{$subscriber->getEmail()}}</td>
+                                <td>
+                                    @if($subscriber->isVerify())
+                                        <span class="label label-success">Подтвержден</span>
+                                    @else
+                                        <span class="label label-warning">Ожидает подтверждения</span>
+                                    @endif
                                 </td>
                                 <td>
                                     {{Form::open(['route'=>['subscriber.destroy', $subscriber->getId()], 'method'=>'delete'])}}

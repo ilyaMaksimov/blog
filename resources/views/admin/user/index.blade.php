@@ -46,7 +46,6 @@
                                     <img src="{{$user->getPathAvatar()}}" alt="" class="img-responsive" width="150">
                                 </td>
                                 <td>
-                                    <a href="#" class="fa fa-pencil"></a>
                                     {{Form::open(['route'=>['user.destroy', $user->getId()], 'method'=>'delete'])}}
                                     <button onclick="return confirm('Точно удалить?')" type="submit" class="delete">
                                         <i class="fa fa-remove"></i>
@@ -56,7 +55,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
                         </tfoot>
                     </table>
                 </div>

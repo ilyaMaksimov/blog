@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityRepository;
 
 class SubscribeRepository extends EntityRepository
 {
-    private $entityName = 'App\Entities\Subscribe';
+    const ENTITY_NAME = 'App\Entities\Subscribe';
 
     /** @var EntityManager $em */
     private $em;
@@ -49,7 +49,7 @@ class SubscribeRepository extends EntityRepository
      */
     public function update($request, $id)
     {
-        $tag = $this->em->find($this->entityName, $id);
+        $tag = $this->em->find(self::ENTITY_NAME, $id);
         $tag->setTitle($request['title']);
         $tag->setSlug($request['title']);
 
@@ -65,10 +65,8 @@ class SubscribeRepository extends EntityRepository
      */
     public function delete($id)
     {
-        $tag = $this->em->find($this->entityName, $id);
-
+        $tag = $this->em->find(self::ENTITY_NAME, $id);
         $this->em->remove($tag);
-        $this->em->flush();
     }
 
     // todo метод как в категорирепозитори
