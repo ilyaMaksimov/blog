@@ -181,9 +181,9 @@ class Post
     /**
      * @return mixed
      */
-    public function getIsPublic()
+    public function isPublic()
     {
-        return $this->is_public;
+        return $this->is_public == self::STATUS_PUBLIC;
     }
 
     /**
@@ -217,7 +217,7 @@ class Post
     /**
      * @return mixed
      */
-    public function getIsFeatured()
+    public function isFeatured()
     {
         return $this->is_featured;
     }

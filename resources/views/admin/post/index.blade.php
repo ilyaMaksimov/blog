@@ -50,10 +50,15 @@
                                          class="img-responsive" width="100">
                                 </td>
                                 <td>
-                                    @if($post->isDraft())
-                                        <span class="label label-warning">Черновик</span>
-                                    @else
+                                    @if($post->isPublic())
                                         <span class="label label-success">Публичный</span>
+
+                                    @else
+                                        <span class="label label-warning">Черновик</span>
+
+                                    @endif
+                                    @if($post->isFeatured())
+                                        <span class="label label-primary">Рекомендуемый</span>
                                     @endif
                                 </td>
                                 <td>

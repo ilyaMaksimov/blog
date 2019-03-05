@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label>
                                 <input type="checkbox" name="is_featured" value="0"  style='display:none;' checked>
-                                {{ Form::checkbox('is_featured', '1', $post->getIsFeatured(),['class'=>'minimal']) }}
+                                {{ Form::checkbox('is_featured', '1', $post->isFeatured(),['class'=>'minimal']) }}
                             </label>
                             <label>
                                 Рекомендовать
@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <label>
                                 <input type="checkbox" name="is_public" value="0"  style='display:none;' checked>
-                                {{ Form::checkbox('is_public', '1', $post->getIsPublic(),['class'=>'minimal']) }}
+                                {{ Form::checkbox('is_public', '1', $post->isDraft(),['class'=>'minimal']) }}
                             </label>
                             <label>
                                 Черновик
