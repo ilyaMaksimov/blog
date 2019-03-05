@@ -337,4 +337,9 @@ class Post
     {
         return $this->comments;
     }
+
+    public function isDraft()
+    {
+        return $this->is_public == self::STATUS_DRAFT;
+    }
 }

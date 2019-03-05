@@ -33,29 +33,39 @@
                             <th>Категория</th>
                             <th>Теги</th>
                             <th>Картинка</th>
+                            <th>Статус</th>
                             <th>Действия</th>
                         </tr>
                         </thead>
                         <tbody>
-                      @foreach($posts as $post)
-                        <tr>
-                            <td>{{$post->getId()}}</td>
-                            <td>{{$post->getTitle()}}</td>
-                            <td>{{$post->getCategory()->getTitle()}}</td>
-                            <td>{{$post->getTagsTitles()}}</td>
-                            <td>
-                                <img src="{{\App\Components\Image::getPath($post->getImage())}}" alt="" class="img-responsive" width="100">
-                            </td>
-                            <td>
-                                <a href="{{route('post.edit', $post->getId())}}" class="fa fa-pencil"></a>
-                                {{Form::open(['route'=>['post.destroy', $post->getId()], 'method'=>'delete'])}}
-                                <button onclick="return confirm('are you sure?')" type="submit" class="delete">
-                                    <i class="fa fa-remove"></i>
-                                </button>
+                        @foreach($posts as $post)
+                            <tr>
+                                <td>{{$post->getId()}}</td>
+                                <td>{{$post->getTitle()}}</td>
+                                <td>{{$post->getCategory()->getTitle()}}</td>
+                                <td>{{$post->getTagsTitles()}}</td>
 
-                                {{Form::close()}}
-                            </td>
-                        </tr>
+                                <td>
+                                    <img src="{{\App\Components\Image::getPath($post->getImage())}}" alt=""
+                                         class="img-responsive" width="100">
+                                </td>
+                                <td>
+                                    @if($post->isDraft())
+                                        <span class="label label-warning">Черновик</span>
+                                    @else
+                                        <span class="label label-success">Публичный</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{route('post.edit', $post->getId())}}" class="fa fa-pencil"></a>
+                                    {{Form::open(['route'=>['post.destroy', $post->getId()], 'method'=>'delete'])}}
+                                    <button onclick="return confirm('are you sure?')" type="submit" class="delete">
+                                        <i class="fa fa-remove"></i>
+                                    </button>
+
+                                    {{Form::close()}}
+                                </td>
+                            </tr>
                         @endforeach
                         </tfoot>
                     </table>
