@@ -7,6 +7,7 @@
             <div>
                 <ol class="breadcrumb">
                     <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li><a href="{{ route('post.index') }}">Посты</a></li>
                     <li class="active">Редактировать пост</li>
                 </ol>
             </div>
@@ -82,8 +83,8 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" name="is_public" value="0"  style='display:none;' checked>
-                                {{ Form::checkbox('is_public', '1', $post->isDraft(),['class'=>'minimal']) }}
+                                <input type="checkbox" name="is_public" value="1"  style='display:none;' checked>
+                                {{ Form::checkbox('is_public', '0', $post->isDraft(),['class'=>'minimal']) }}
                             </label>
                             <label>
                                 Черновик

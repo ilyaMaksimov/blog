@@ -16,11 +16,11 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|string|max:50',
             'description' => 'required|string|max:255',
-            'date' => 'required|date|date_format:"Y-m-d"',
             'content' => 'required|string',
             'is_public' => 'boolean',
             'is_featured' => 'boolean',
-            'image' => 'nullable|image|mimes:jpeg,png'
+            'image' => 'nullable|image|mimes:jpeg,png',
+            'date' => 'required|date|date_format:"Y-m-d"',
         ];
     }
 }

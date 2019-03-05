@@ -12,10 +12,14 @@ use Dropbox\Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use LaravelDoctrine\ORM\Pagination\PaginatesFromParams;
 
+/**
+ * Class PostRepository
+ * @package App\Repositories
+ *
+ * @property EntityManager $em
+ */
 class PostRepository extends EntityRepository
 {
-    private $entityName = 'App\Entities\Post';
-
     /** @var EntityManager $em */
     private $em;
 
@@ -29,39 +33,32 @@ class PostRepository extends EntityRepository
      * @param $request
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
      */
     public function add($request)
     {
-
         $post = new Post();
         $post->setTitle($request['title']);
         $post->setSlug($request['title']);
+        $post->setDescription($request['description']);
+        $post->setContent($request['content']);
+        $post->setIsPublic($request['is_public']);
+        $post->setIsFeatured($request['is_featured']);
+        $post->setDate($request['date']);
+
+        $image = new Image();
+        $image->saveToDirectory($request['image']);
+        $image->fit();
+
+        $post->setImage($image->getName());
+
+        $tags = $this->em->getRepository(Tag::class)->findBy(['id' => $request['tags']]);
+        $post->setTags($tags);
 
         $category = $this->em->find(Category::class, $request['category']);
         $post->setCategory($category);
 
-        $post->setDescription($request['description']);
-        $post->setContent($request['content']);
-
-        $post->setIsPublic($request['is_public']);
-        $post->setIsFeatured($request['is_featured']);
-
-        $post->setDate($request['date']);
-
-        $image = new Image();
-        $image->save($request['image']);
-        $image->fit();
-        $post->setImage($image->getName());
-
-        $tags = $this->em->getRepository('App\Entities\Tag')->findBy(['id' => $request['tags']]);
-
-        foreach ($tags as $tag) {
-            $post->addTag($tag);
-        }
-
-
         $this->em->persist($post);
-        $this->em->flush();
     }
 
     /**
@@ -74,37 +71,29 @@ class PostRepository extends EntityRepository
     public function update($request, $id)
     {
         /** @var Post $post */
-        $post = $this->em->find($this->entityName, $id);
+        $post = $this->em->find(Post::class, $id);
         $post->setTitle($request['title']);
         $post->setSlug($request['title']);
-
-        $category = $this->em->find(Category::class, $request['category']);
-        $post->setCategory($category);
-
         $post->setDescription($request['description']);
         $post->setContent($request['content']);
-
-        $post->setIsPublic($request['is_public']);
         $post->setIsFeatured($request['is_featured']);
-
+        $post->setIsPublic($request['is_public']);
         $post->setDate($request['date']);
 
         $image = new Image();
         $image->update($request['image'], $post->getImage());
         $image->fit();
-
         $post->setImage($image->getName());
 
-        // Это очень плохое решение?
-        $tags = $this->em->getRepository('App\Entities\Tag')->findBy(['id' => $request['tags']]);
-        $post->getTags()->clear();
-        foreach ($tags as $tag) {
-            $post->addTag($tag);
-        }
+        $category = $this->em->find(Category::class, $request['category']);
+        $post->setCategory($category);
 
+        // Это очень плохое решение?
+        $tags = $this->em->getRepository(Tag::class)->findBy(['id' => $request['tags']]);
+        $post->getTags()->clear();
+        $post->setTags($tags);
 
         $this->em->persist($post);
-        $this->em->flush();
     }
 
     /**
@@ -115,12 +104,11 @@ class PostRepository extends EntityRepository
      */
     public function delete(int $id)
     {
-        $post = $this->em->find($this->entityName, $id);
+        $post = $this->em->find(Post::class, $id);
 
         $image = new Image();
         $image->remove($post->getImage());
         $this->em->remove($post);
-        $this->em->flush();
     }
 
     /**
@@ -132,7 +120,7 @@ class PostRepository extends EntityRepository
     {
         $query = $this->em->createQueryBuilder()
             ->select('p')
-            ->from($this->entityName, 'p')
+            ->from(Post::class, 'p')
             ->where('p.category = :category')
             ->andWhere('p.id != :id')
             ->setParameter('category', $post->getCategory())

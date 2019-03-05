@@ -18,7 +18,7 @@ class Image
             return self::DEFAULT_IMAGE;
         }
 
-        return '/'.self::SAVE_DIRECTORY . $image;
+        return '/' . self::SAVE_DIRECTORY . $image;
     }
 
     public function generateName($mimeType)
@@ -31,7 +31,7 @@ class Image
         return $this->name;
     }
 
-    public function save($image)
+    public function saveToDirectory($image)
     {
         if ($image == null) {
             $this->name = null;
@@ -44,8 +44,11 @@ class Image
 
     public function fit()
     {
-        \Intervention\Image\Facades\Image::make(public_path('/'.self::SAVE_DIRECTORY .$this->name))
-            ->fit(config('image.post.width'), config('image.post.height'))->save(self::SAVE_DIRECTORY.$this->name);
+        if ($this->name != null) {
+            \Intervention\Image\Facades\Image::make(public_path('/' . self::SAVE_DIRECTORY . $this->name))
+                ->fit(config('image.post.width'), config('image.post.height'))
+                ->save(self::SAVE_DIRECTORY . $this->name);
+        }
     }
 
     public function update($uploadImage, $currentImage)
@@ -54,20 +57,20 @@ class Image
             $this->name = null;
         } else {
             $this->remove($currentImage);
-            $this->save($uploadImage);
+            $this->saveToDirectory($uploadImage);
         }
     }
 
     public function remove($image)
     {
         if ($image != null) {
-            Storage::delete(self::SAVE_DIRECTORY. $image);
+            Storage::delete(self::SAVE_DIRECTORY . $image);
         }
     }
 
 
     private function store(UploadedFile $uploadedFile, string $filename)
     {
-        $uploadedFile->storeAs('/'.self::SAVE_DIRECTORY, $filename);
+        $uploadedFile->storeAs('/' . self::SAVE_DIRECTORY, $filename);
     }
 }

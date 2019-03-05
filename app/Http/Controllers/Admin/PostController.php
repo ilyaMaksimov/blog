@@ -9,6 +9,14 @@ use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class PostController
+ * @package App\Http\Controllers\Admin
+ *
+ * @property PostRepository $postRepository
+ * @property CategoryRepository $categoryRepository
+ * @property TagRepository $tagRepository
+ */
 class PostController extends Controller
 {
     private $postRepository;
@@ -40,8 +48,13 @@ class PostController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $this->postRepository->add($request);
-        return redirect()->route('post.index');
+        try {
+            $this->postRepository->add($request);
+            \EntityManager::flush();
+        } catch (\Throwable $e) {
+            return redirect()->route('post.index')->with('danger', 'Ошибка при добавлении поста');
+        }
+        return redirect()->route('post.index')->with('success', 'Пост успешно добавлен');
     }
 
     public function edit($id)
@@ -55,13 +68,25 @@ class PostController extends Controller
 
     public function update(UpdateRequest $request, $id)
     {
-        $this->postRepository->update($request, $id);
-        return redirect()->route('post.index');
+        try {
+            $this->postRepository->update($request, $id);
+            \EntityManager::flush();
+        } catch (\Throwable $e) {
+            return redirect()->route('post.index')->with('danger', 'Ошибка при изменении поста');
+        }
+
+        return redirect()->route('post.index')->with('success', 'Пост успешно изменен');
     }
 
     public function destroy($id)
     {
-        $this->postRepository->delete($id);
-        return redirect()->route('post.index');
+        try {
+            $this->postRepository->delete($id);
+            \EntityManager::flush();
+        } catch (\Throwable $e) {
+            return redirect()->route('post.index')->with('danger', 'Ошибка при удалении поста');
+        }
+
+        return redirect()->route('post.index')->with('success', 'Пост успешно удален');
     }
 }

@@ -187,9 +187,9 @@ class Post
     }
 
     /**
-     * @param mixed $status
+     * @param int $status
      */
-    public function setIsPublic($status): void
+    public function setIsPublic(int $status): void
     {
         if ($this->checkStatus($status)) {
             throw new \InvalidArgumentException('wrong status');
@@ -223,9 +223,9 @@ class Post
     }
 
     /**
-     * @param $typePost
+     * @param int $typePost
      */
-    public function setIsFeatured($typePost): void
+    public function setIsFeatured(int $typePost): void
     {
         if ($this->checkTypePost($typePost)) {
             throw new \InvalidArgumentException('wrong status');
@@ -281,6 +281,14 @@ class Post
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
+        }
+    }
+
+
+    public function setTags(array $tags): void
+    {
+        foreach ($tags as $tag) {
+            $this->addTag($tag);
         }
     }
 

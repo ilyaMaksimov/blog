@@ -5,10 +5,13 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Добавить статью
-                <small>приятные слова..</small>
-            </h1>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li><a href="{{ route('post.index') }}">Посты</a></li>
+                    <li class="active">Добавить пост</li>
+                </ol>
+            </div>
         </section>
 
         <!-- Main content -->
@@ -20,7 +23,7 @@
         <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Добавляем статью</h3>
+                    <h3 class="box-title">Добавить пост</h3>
                     @include('admin.layout.errors')
                 </div>
                 <div class="box-body">
@@ -85,7 +88,7 @@
                         <div class="form-group">
                             <label>
                                 <input type="checkbox" name="is_public" value="0"  style='display:none;' checked>
-                                <input type="checkbox" class="minimal" name="is_public" value="1">
+                                <input type="checkbox" name="is_public" class="minimal" value="1">
                             </label>
                             <label>
                                 Черновик
