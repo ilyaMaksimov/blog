@@ -27,7 +27,8 @@ class PostController extends Controller
         PostRepository $postRepository,
         CategoryRepository $categoryRepository,
         TagRepository $tagRepository
-    ) {
+    )
+    {
         $this->postRepository = $postRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
@@ -41,8 +42,9 @@ class PostController extends Controller
 
     public function create()
     {
-        $categories = $this->categoryRepository->getArrayOfIdAndTitle();
-        $tags = $this->tagRepository->getArrayOfIdAndTitle();
+        $categories = $this->categoryRepository->selectIdAndTitle();
+        $tags = $this->tagRepository->selectIdAndTitle();
+
         return view('admin.post.create', compact('categories', 'tags'));
     }
 
@@ -60,9 +62,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = $this->postRepository->find($id);
-        $categories = $this->categoryRepository->getArrayOfIdAndTitle();
-        $tags = $this->tagRepository->getArrayOfIdAndTitle();
 
+        $categories = $this->categoryRepository->selectIdAndTitle();
+        $tags = $this->tagRepository->selectIdAndTitle();
         return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 

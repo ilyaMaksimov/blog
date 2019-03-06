@@ -66,16 +66,13 @@ class TagRepository extends EntityRepository
         $this->em->flush();
     }
 
-    // todo метод как в категорирепозитори
-    public function getArrayOfIdAndTitle()
+    /**
+     * @return mixed
+     */
+    public function selectIdAndTitle()
     {
-        $resultQuery = $this->em->createQuery('select c.id, c.title from App\Entities\Tag c')->getResult();
-
-        $result = [];
-        foreach ($resultQuery as $category) {
-            $result[$category['id']]= $category['title'];
-        }
-
-        return $result ;
+        $query = 'select c.id, c.title from App\Entities\Tag c';
+        return $this->em->createQuery($query)
+            ->getResult();
     }
 }

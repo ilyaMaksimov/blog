@@ -16,7 +16,7 @@
         <!-- Main content -->
         {!! Form::open(['route' => ['post.update', $post->getId()], 'files'	=>	true, 'method'=>'put']) !!}
         <section class="content">
-        <!-- Default box -->
+            <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Редактировать пост</h3>
@@ -31,7 +31,8 @@
                         </div>
 
                         <div class="form-group">
-                            <img src="{{\App\Components\Image::getPath($post->getImage())}}" alt="" class="img-responsive" width="200">
+                            <img src="{{\App\Components\Image::getPath($post->getImage())}}" alt=""
+                                 class="img-responsive" width="200">
                             <label for="exampleInputFile">Лицевая картинка</label>
                             <input type="file" id="exampleInputFile" name="image">
 
@@ -43,20 +44,31 @@
 
                         <div class="form-group">
                             <label>Категория</label>
-                            {{Form::select('category',
-                                $categories,
-                                $post->getCategory()->getId(),
-                                ['class' => 'form-control select2'])
-                            }}
+                            <select class="form-control select2" name="category">
+                                @foreach($categories as $category)
+                                    <option value="{{$category['id']}}">{{$category['title']}}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        {{--<div class="form-group">
+                            <label>Теги</label>
+                            <select class="form-control select2" data-placeholder="Выберите теги" name="category">
+
+                                @foreach($tags2 as $category)
+                                    <option value="{{$category['id']}}">{{$category['title']}}</option>
+                                @endforeach
+                            </select>
+                        </div>--}}
+
                         <div class="form-group">
                             <label>Теги</label>
                             {{Form::select('tags[]',
-                                $tags,
+                                collect($tags)->pluck('title','id'),
                                 $post->selectedTagsId(),
                                 ['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите теги'])
                             }}
                         </div>
+
                         <!-- Date -->
                         <div class="form-group">
                             <label>Дата:</label>
@@ -65,7 +77,8 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" id="datepicker" value="{{ $post->getDate() }}" name="date">
+                                <input type="text" class="form-control pull-right" id="datepicker"
+                                       value="{{ $post->getDate() }}" name="date">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -73,7 +86,7 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" name="is_featured" value="0"  style='display:none;' checked>
+                                <input type="checkbox" name="is_featured" value="0" style='display:none;' checked>
                                 {{ Form::checkbox('is_featured', '1', $post->isFeatured(),['class'=>'minimal']) }}
                             </label>
                             <label>
@@ -83,7 +96,7 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" name="is_public" value="1"  style='display:none;' checked>
+                                <input type="checkbox" name="is_public" value="1" style='display:none;' checked>
                                 {{ Form::checkbox('is_public', '0', $post->isDraft(),['class'=>'minimal']) }}
                             </label>
                             <label>

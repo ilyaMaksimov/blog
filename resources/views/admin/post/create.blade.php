@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label>Категория</label>
                             {{Form::select('category',
-                                $categories,
+                                 collect($categories)->pluck('title','id'),
                                 null,
                                 ['class' => 'form-control select2'])
                             }}
@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <label>Теги</label>
                             {{Form::select('tags[]',
-                                $tags,
+                                 collect($tags)->pluck('title','id'),
                                 null,
                                 ['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите теги'])
                             }}
@@ -87,7 +87,7 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" name="is_public" value="0"  style='display:none;' checked>
+                                <input type="checkbox" name="is_public" value="0" style='display:none;' checked>
                                 <input type="checkbox" name="is_public" class="minimal" value="1">
                             </label>
                             <label>
@@ -105,7 +105,8 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Полный текст</label>
-                            <textarea name="content" id="" cols="30" rows="10" class="form-control">{{old('content')}}</textarea>
+                            <textarea name="content" id="" cols="30" rows="10"
+                                      class="form-control">{{old('content')}}</textarea>
                         </div>
                     </div>
                 </div>

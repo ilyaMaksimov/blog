@@ -84,9 +84,9 @@ class PostRepository extends EntityRepository
 
         $image = new Image($request['image']);
         $image->update($post->getImage());
-        //$image->compressionToStandardSize();
+        $image->compressionToStandardSize();
         $post->setImage($image->getName());
-//dd($image->getName());
+
         $category = $this->em->find(Category::class, $request['category']);
         $post->setCategory($category);
 

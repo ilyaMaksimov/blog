@@ -67,21 +67,13 @@ class CategoryRepository extends EntityRepository
         $this->em->flush();
     }
 
-
-// todo метод как в tegрирепозитори
-
     /**
-     * @return array
+     * @return mixed
      */
-    public function getArrayOfIdAndTitle()
+    public function selectIdAndTitle()
     {
-        $resultQuery = $this->em->createQuery('select c.id, c.title from App\Entities\Category c')->getResult();
-
-        $result = [];
-        foreach ($resultQuery as $category) {
-            $result[$category['id']] = $category['title'];
-        }
-
-        return $result;
+        $query = 'select c.id, c.title from App\Entities\Category c';
+        return $this->em->createQuery($query)
+            ->getResult();
     }
 }
