@@ -20,7 +20,8 @@ class UpdateRequest extends FormRequest
             'content' => 'required|string',
             'is_public' => 'boolean',
             'is_featured' => 'boolean',
-            'image' => 'nullable|image|mimes:jpeg,png'
+            'image' => 'nullable|image|mimes:jpeg,png',
+            'category' => 'required'
         ];
     }
 }

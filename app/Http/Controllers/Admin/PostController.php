@@ -8,6 +8,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class PostController
@@ -62,9 +63,12 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = $this->postRepository->find($id);
-
+        if (!$post) {
+            throw new NotFoundHttpException('Такого поста не существует!');
+        }
         $categories = $this->categoryRepository->selectIdAndTitle();
         $tags = $this->tagRepository->selectIdAndTitle();
+
         return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 

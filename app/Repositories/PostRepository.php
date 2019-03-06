@@ -20,6 +20,8 @@ use LaravelDoctrine\ORM\Pagination\PaginatesFromParams;
  */
 class PostRepository extends EntityRepository
 {
+    use PaginatesFromParams;
+
     /** @var EntityManager $em */
     private $em;
 
@@ -130,33 +132,6 @@ class PostRepository extends EntityRepository
         return $query->execute();
     }
 
-    public function getPublicPostAndPaginate(int $limit = 8, int $page = 1): LengthAwarePaginator
-    {
-        $query = 'SELECT p FROM App\Entities\Post p WHERE p.is_public = :public';
-        $query = $this->em->createQuery($query)
-            ->setParameter(':public', Post::STATUS_PUBLIC);
-
-        return $this->paginate($query, $limit, $page);
-    }
-
-    public function findBySlugTagAndPaginate(string $slug, int $limit = 8, int $page = 1): LengthAwarePaginator
-    {
-        $query = 'SELECT p FROM App\Entities\Post p  JOIN p.tags c WHERE c.slug = :slug';
-        $query = $this->em->createQuery($query)
-            ->setParameter(':slug', $slug);
-
-        return $this->paginate($query, $limit, $page);
-    }
-
-    public function findBySlugCategoryAndPaginate(string $slug, int $limit = 8, int $page = 1): LengthAwarePaginator
-    {
-        $query = "SELECT p FROM App\Entities\Post p  JOIN p.category c WHERE c.slug = :slug";
-        $query = $this->em->createQuery($query)
-            ->setParameter(':slug', $slug);
-
-        return $this->paginate($query, $limit, $page);
-    }
-
     public function recentPosts()
     {
         $query = "SELECT p FROM App\Entities\Post p  ORDER BY p.date DESC";
@@ -165,79 +140,53 @@ class PostRepository extends EntityRepository
             ->getResult();
     }
 
-    public function getAll()
+    /**
+     * Get public posts with pagination
+     *
+     * @param int $limit number of posts per page
+     * @param int $page
+     * @return LengthAwarePaginator
+     */
+    public function getPublicPostWithPagination(int $limit = 8, int $page = 1): LengthAwarePaginator
     {
-        $query = "SELECT p FROM App\Entities\Post p  ORDER BY p.date DESC";
-        return $query = $this->em->createQuery($query)
-            ->getResult();
+        $query = 'SELECT p FROM App\Entities\Post p WHERE p.is_public = :public';
+        $query = $this->em->createQuery($query)
+            ->setParameter(':public', Post::STATUS_PUBLIC);
+
+        return $this->paginate($query, $limit, $page);
     }
 
-    use PaginatesFromParams;
-
     /**
+     * Find by slug tag with pagination
+     *
+     * @param string $slug
      * @param int $limit
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public function all(int $limit = 8, int $page = 1): LengthAwarePaginator
+    public function findBySlugTagWithPagination(string $slug, int $limit = 8, int $page = 1): LengthAwarePaginator
     {
-        // paginateAll is already public, you may use it directly as well.
-        return $this->paginateAll($limit, $page);
+        $query = 'SELECT p FROM App\Entities\Post p  JOIN p.tags c WHERE c.slug = :slug';
+        $query = $this->em->createQuery($query)
+            ->setParameter(':slug', $slug);
+
+        return $this->paginate($query, $limit, $page);
     }
-
-
-    public function findAll1($slug, $results = 10, $pageName = 'page')
-    {
-        $query = $this->createQueryBuilder('p')
-            // ->leftJoin('p.category', 'c.slug', 'ON')
-            ->join('p.category', 'c', 'ON')
-            ->where('c.slug = :slug')
-            //->orderBy('s.name', 'asc')
-            ->setParameter('slug', $slug)
-            /*   ->select('t', 'f', 'c')
-               ->
-               ->leftJoin('t.category', 'c', 'ON')
-               ->orderBy('t.createdAt', 'asc')*/
-            ->getQuery();
-
-        return $this->paginate($query, $results, $pageName);
-    }
-
-    public function findAll2($results = 10, $pageName = 'page')
-    {
-        return $query = $this->createQueryBuilder('t')
-            /*   ->select('t', 'f', 'c')
-               ->leftJoin('t.first', 'f', 'ON')
-               ->leftJoin('t.category', 'c', 'ON')
-               ->orderBy('t.createdAt', 'asc')*/
-            ->getQuery();
-
-        //$this->paginate($query, $results, $pageName);
-    }
-
 
     /**
-     * @return mixed
-     * TODO delete method
+     * Find by slug category with pagination
+     *
+     * @param string $slug
+     * @param int $limit
+     * @param int $page
+     * @return LengthAwarePaginator
      */
-    public function getAllComment()
+    public function findBySlugCategoryWithPagination(string $slug, int $limit = 8, int $page = 1): LengthAwarePaginator
     {
-        $query = "SELECT p FROM App\Entities\Post p  LEFT JOIN App\Entities\Comment c ON p.id = c.post_id";
-        return $query = $this->em->createQuery($query)
-            ->getResult();
+        $query = "SELECT p FROM App\Entities\Post p  JOIN p.category c WHERE c.slug = :slug";
+        $query = $this->em->createQuery($query)
+            ->setParameter(':slug', $slug);
+
+        return $this->paginate($query, $limit, $page);
     }
-
-    public function query()
-    {
-        //$query = 'SELECT u FROM App\Entities\Post u';
-        //$query = 'SELECT p FROM App\Entities\Post p  JOIN App\Entities\Category c WHERE c.id = 14';
-        //$query = 'SELECT p FROM App\Entities\Post p  JOIN p.category c WHERE c.id = 1';
-        //$query = "SELECT p FROM App\Entities\Post p  JOIN p.category c WHERE c.slug = 'kategoriya-1'";
-        $query = "SELECT p FROM App\Entities\Post p  JOIN p.tags c WHERE c.slug = :slug";
-        return $query = $this->em->createQuery($query)
-            ->setParameter(':slug', 321)
-            ->getResult();
-    }
-
-
 }

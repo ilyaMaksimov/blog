@@ -21,6 +21,7 @@ class StoreRequest extends FormRequest
             'is_featured' => 'boolean',
             'image' => 'nullable|image|mimes:jpeg,png',
             'date' => 'required|date|date_format:"Y-m-d"',
+            'category' => 'required'
         ];
     }
 }

@@ -30,7 +30,7 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
-        $posts = $this->postRepository->getPublicPostAndPaginate(2, $request['page'] ?? 1);
+        $posts = $this->postRepository->getPublicPostWithPagination(2, $request['page'] ?? 1);
         return view('frontend.post.index', compact('posts'));
     }
 
@@ -50,7 +50,7 @@ class PostController extends Controller
 
     public function tag($slug)
     {
-        $posts = $this->postRepository->findBySlugTagAndPaginate($slug, 2, $request['page'] ?? 1);
+        $posts = $this->postRepository->findBySlugTagWithPagination($slug, 2, $request['page'] ?? 1);
 
         if ($posts->isEmpty()) {
             throw new NotFoundHttpException('Такого тега не существует!');
@@ -62,7 +62,7 @@ class PostController extends Controller
 
     public function category(Request $request, $slug)
     {
-        $posts = $this->postRepository->findBySlugCategoryAndPaginate($slug, 2, $request['page'] ?? 1);
+        $posts = $this->postRepository->findBySlugCategoryWithPagination($slug, 2, $request['page'] ?? 1);
 
         if ($posts->isEmpty()) {
             throw new NotFoundHttpException('Такой категории не существует!');
