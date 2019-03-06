@@ -128,7 +128,7 @@ class Comment
     }
 
     /**
-     * @return \DateTime
+     * @return string
      */
     public function getDate()
     {

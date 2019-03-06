@@ -96,6 +96,9 @@ class Subscribe
         $this->date = new \DateTime($date);
     }
 
+    /**
+     * @return bool
+     */
     public function isVerify()
     {
         return  $this->token === self::VERIFY;

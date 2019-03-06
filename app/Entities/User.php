@@ -62,47 +62,74 @@ class User implements AuthenticatableContract, CanResetPasswordContract
     /** @ORM\Column(type="string", nullable=true) */
     protected $avatar;
 
-    public function getId()
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function setName($name)
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setEmail($email)
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    public function getEmail()
+    /**
+     * @return string
+     */
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function isAdmin()
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
     {
         return $this->is_admin;
     }
 
-    public function getAvatar()
+    /**
+     * @return null|string
+     */
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    public function getPathAvatar()
+    /**
+     * @return string
+     */
+    public function getPathAvatar(): string
     {
         return Image::getPath($this->getAvatar());
     }
 
-    public function setAvatar($avatar): void
+    /**
+     * @param string $avatar
+     */
+    public function setAvatar(string $avatar): void
     {
         $this->avatar = $avatar;
     }
@@ -116,4 +143,3 @@ class User implements AuthenticatableContract, CanResetPasswordContract
         return $this->is_admin = $bool;
     }
 }
-

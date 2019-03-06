@@ -284,7 +284,9 @@ class Post
         }
     }
 
-
+    /**
+     * @param array $tags
+     */
     public function setTags(array $tags): void
     {
         foreach ($tags as $tag) {
@@ -292,22 +294,36 @@ class Post
         }
     }
 
-    public function getStatusArray()
+    /**
+     * @return array
+     */
+    public function getStatusArray(): array
     {
         return [self::STATUS_PUBLIC, self::STATUS_DRAFT];
     }
 
-    public function getTypePostArray()
+    /**
+     * @return array
+     */
+    public function getTypePostArray(): array
     {
         return [self::STANDARD_POST, self::FEATURED_POST];
     }
 
-    public function checkStatus($status)
+    /**
+     * @param bool $status
+     * @return bool
+     */
+    public function checkStatus(bool $status): bool
     {
         return (!in_array($status, $this->getStatusArray(), false));
     }
 
-    public function checkTypePost($status)
+    /**
+     * @param bool $status
+     * @return bool
+     */
+    public function checkTypePost(bool $status): bool
     {
         return (!in_array($status, $this->getTypePostArray(), false));
     }
@@ -346,6 +362,9 @@ class Post
         return $this->comments;
     }
 
+    /**
+     * @return bool
+     */
     public function isDraft()
     {
         return $this->is_public == self::STATUS_DRAFT;

@@ -2,7 +2,6 @@
 
 namespace App\Entities;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
@@ -27,7 +26,6 @@ class Category
      * @var ArrayCollection|Post[]
      */
     protected $post;
-
 
     public function getPost()
     {

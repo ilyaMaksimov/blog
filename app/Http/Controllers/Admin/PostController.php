@@ -28,8 +28,7 @@ class PostController extends Controller
         PostRepository $postRepository,
         CategoryRepository $categoryRepository,
         TagRepository $tagRepository
-    )
-    {
+    ) {
         $this->postRepository = $postRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
@@ -51,7 +50,6 @@ class PostController extends Controller
 
     public function store(StoreRequest $request)
     {
-        //dd($request);
         try {
             $this->postRepository->add($request);
             \EntityManager::flush();
@@ -67,6 +65,7 @@ class PostController extends Controller
         if (!$post) {
             throw new NotFoundHttpException('Такого поста не существует!');
         }
+
         $categories = $this->categoryRepository->selectIdAndTitle();
         $tags = $this->tagRepository->selectIdAndTitle();
 

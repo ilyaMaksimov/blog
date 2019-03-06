@@ -22,27 +22,42 @@ class Tag
     /** @ORM\Column(type="string") */
     protected $slug;
 
-    public function getId()
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle()
+    /**
+     * @return string
+     */
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle($title)
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    public function getSlug()
+    /**
+     * @return string
+     */
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
-    public function setSlug($slug)
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug)
     {
         $this->slug = $slug;
     }
