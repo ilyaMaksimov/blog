@@ -51,6 +51,7 @@ class PostController extends Controller
 
     public function store(StoreRequest $request)
     {
+        //dd($request);
         try {
             $this->postRepository->add($request);
             \EntityManager::flush();

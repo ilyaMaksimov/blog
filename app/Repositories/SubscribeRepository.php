@@ -3,14 +3,17 @@
 namespace App\Repositories;
 
 use App\Entities\Subscribe;
-use App\Entities\Tag;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class SubscribeRepository
+ * @package App\Repositories
+ *
+ * @property EntityManager $em
+ */
 class SubscribeRepository extends EntityRepository
 {
-    const ENTITY_NAME = 'App\Entities\Subscribe';
-
     /** @var EntityManager $em */
     private $em;
 
@@ -21,12 +24,13 @@ class SubscribeRepository extends EntityRepository
     }
 
     /**
-     * @param $request
+     * Add subscriber
+     *
+     * @param array $request
      * @return Subscribe
      * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function add($request)
+    public function add(array $request)
     {
         /** @var Subscribe $subscribe */
         $subscribe = new Subscribe();
@@ -35,50 +39,21 @@ class SubscribeRepository extends EntityRepository
         $subscribe->setDate(now());
 
         $this->em->persist($subscribe);
-        $this->em->flush();
 
         return $subscribe;
     }
 
     /**
-     * @param $request
-     * @param $id
+     *  Delete subscriber
+     *
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function update($request, $id)
+    public function delete(int $id)
     {
-        $tag = $this->em->find(self::ENTITY_NAME, $id);
-        $tag->setTitle($request['title']);
-        $tag->setSlug($request['title']);
-
-        $this->em->persist($tag);
-        $this->em->flush();
-    }
-
-    /**
-     * @param $id
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\TransactionRequiredException
-     */
-    public function delete($id)
-    {
-        $tag = $this->em->find(self::ENTITY_NAME, $id);
+        $tag = $this->em->find(Subscribe::class, $id);
         $this->em->remove($tag);
-    }
-
-    // todo метод как в категорирепозитори
-    public function getArrayOfIdAndTitle()
-    {
-        $resultQuery = $this->em->createQuery('select c.id, c.title from App\Entities\Tag c')->getResult();
-
-        $result = [];
-        foreach ($resultQuery as $category) {
-            $result[$category['id']] = $category['title'];
-        }
-
-        return $result;
     }
 }

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\Tag\StoreRequest;
-use App\Http\Requests\Admin\Tag\UpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\CommentRepository;
-use App\Repositories\TagRepository;
 
+/**
+ * Class CommentController
+ * @package App\Http\Controllers\Admin
+ *
+ * @property CommentRepository $commentRepository
+ */
 class CommentController extends Controller
 {
     private $commentRepository;
@@ -25,13 +28,25 @@ class CommentController extends Controller
 
     public function toggle($id)
     {
-        $this->commentRepository->toggleStatus($id);
-        return redirect()->back();
+        try {
+            $this->commentRepository->toggleStatus($id);
+            \EntityManager::flush();
+        } catch (\Throwable $e) {
+            return redirect()->route('tag.index')->with('danger', 'Ошибка при измении статуса комментария!');
+        }
+
+        return redirect()->back()->with('success', 'Статус комментария успешно изменен!');
     }
 
     public function destroy($id)
     {
-        $this->commentRepository->delete($id);
-        return redirect()->back();
+        try {
+            $this->commentRepository->delete($id);
+            \EntityManager::flush();
+        } catch (\Throwable $e) {
+            return redirect()->route('tag.index')->with('danger', 'Ошибка при удалении комментария!');
+        }
+
+        return redirect()->back()->with('success', 'Комментарий успешно удален!');
     }
 }

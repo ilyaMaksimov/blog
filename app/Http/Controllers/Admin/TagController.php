@@ -6,7 +6,14 @@ use App\Http\Requests\Admin\Tag\StoreRequest;
 use App\Http\Requests\Admin\Tag\UpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\TagRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class TagController
+ * @package App\Http\Controllers\Admin
+ *
+ * @property TagRepository $tagRepository
+ */
 class TagController extends Controller
 {
 
@@ -30,25 +37,46 @@ class TagController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $this->tagRepository->add($request);
-        return redirect()->route('tag.index');
+        try {
+            $this->tagRepository->add($request->toArray());
+            \EntityManager::flush();
+        } catch (\Throwable $e) {
+            return redirect()->route('tag.index')->with('danger', 'Ошибка при добавлении тега!');
+        }
+
+        return redirect()->route('tag.index')->with('success', 'Тег успешно добавлен!');
     }
 
     public function edit($id)
     {
         $tag = $this->tagRepository->find($id);
+        if (!$tag) {
+            throw new NotFoundHttpException('Такого тега не существует!');
+        }
         return view('admin.tag.edit', compact('tag'));
     }
 
     public function update(UpdateRequest $request, $id)
     {
-        $this->tagRepository->update($request, $id);
-        return redirect()->route('tag.index');
+        try {
+            $this->tagRepository->update($request->toArray(), $id);
+            \EntityManager::flush();
+        } catch (\Throwable $e) {
+            return redirect()->route('tag.index')->with('danger', 'Ошибка при обновлении тега!');
+        }
+
+        return redirect()->route('tag.index')->with('success', 'Тег успешно изменен!');
     }
 
     public function destroy($id)
     {
-        $this->tagRepository->delete($id);
-        return redirect()->route('tag.index');
+        try {
+            $this->tagRepository->delete($id);
+            \EntityManager::flush();
+        } catch (\Throwable $e) {
+            return redirect()->route('tag.index')->with('danger', 'Ошибка при удалении тега!');
+        }
+
+        return redirect()->route('tag.index')->with('success', 'Тег успешно удален!');
     }
 }

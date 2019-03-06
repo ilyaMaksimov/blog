@@ -3,15 +3,18 @@
 namespace App\Repositories;
 
 use App\Components\Image;
-use App\Entities\Tag;
+use App\Entities\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class UserRepository
+ * @package App\Repositories
+ *
+ * @property EntityManager $em
+ */
 class UserRepository extends EntityRepository
 {
-    const ENTITY_NAME = 'App\Entities\User';
-
     /** @var EntityManager $em */
     private $em;
 
@@ -22,36 +25,38 @@ class UserRepository extends EntityRepository
     }
 
     /**
+     *  Update user data
+     *
      * @param $request
-     * @param $id
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function update($request, $id)
+    public function update($request, int $id)
     {
-        $user = $this->em->find(self::ENTITY_NAME, $id);
+        $user = $this->em->find(User::class, $id);
         $user->setName($request['name']);
         $user->setEmail($request['email']);
 
-        $image = new Image();
-        $image->update($request['avatar'], $user->getAvatar());
-
+        $image = new Image($request['avatar']);
+        $image->update($user->getAvatar());
         $user->setAvatar($image->getName());
 
         $this->em->persist($user);
-        $this->em->flush();
     }
 
     /**
-     * @param $id
+     * Delete user
+     *
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function delete($id)
+    public function delete(int $id)
     {
-        $user = $this->em->find(self::ENTITY_NAME, $id);
+        $user = $this->em->find(User::class, $id);
         $this->em->remove($user);
     }
 }

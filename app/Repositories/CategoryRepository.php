@@ -7,10 +7,14 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Dropbox\Exception;
 
+/**
+ * Class CategoryRepository
+ * @package App\Repositories
+ *
+ * @property EntityManager $em
+ */
 class CategoryRepository extends EntityRepository
 {
-    private $entityName = 'App\Entities\Category';
-
     /** @var EntityManager $em */
     private $em;
 
@@ -21,58 +25,60 @@ class CategoryRepository extends EntityRepository
     }
 
     /**
-     * @param $request
+     * Add category
+     *
+     * @param array $request
      * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function add($request)
+    public function add(array $request)
     {
-        /** @var Category $category */
         $category = new Category();
         $category->setTitle($request['title']);
         $category->setSlug($request['title']);
 
         $this->em->persist($category);
-        $this->em->flush();
     }
 
     /**
-     * @param $request
-     * @param $id
+     * Update category
+     *
+     * @param array $request
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function update($request, $id)
+    public function update(array $request, int $id)
     {
-        $category = $this->em->find($this->entityName, $id);
+        $category = $this->em->find(Category::class, $id);
         $category->setTitle($request['title']);
         $category->setSlug($request['title']);
 
         $this->em->persist($category);
-        $this->em->flush();
     }
 
     /**
-     * @param $id
+     * Delete category
+     *
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function delete($id)
+    public function delete(int $id)
     {
-        $category = $this->em->find($this->entityName, $id);
-
+        $category = $this->em->find(Category::class, $id);
         $this->em->remove($category);
-        $this->em->flush();
     }
 
     /**
+     * Select id and title categories
+     *
      * @return mixed
      */
     public function selectIdAndTitle()
     {
-        $query = 'select c.id, c.title from App\Entities\Category c';
+        $query = 'SELECT c.id, c.title FROM App\Entities\Category c';
         return $this->em->createQuery($query)
             ->getResult();
     }

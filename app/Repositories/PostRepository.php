@@ -8,7 +8,6 @@ use App\Entities\Tag;
 use App\Components\Image;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Dropbox\Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use LaravelDoctrine\ORM\Pagination\PaginatesFromParams;
 
@@ -67,12 +66,12 @@ class PostRepository extends EntityRepository
      * Update post
      *
      * @param $request
-     * @param $id
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function update($request, $id)
+    public function update($request, int $id)
     {
         /** @var Post $post */
         $post = $this->em->find(Post::class, $id);

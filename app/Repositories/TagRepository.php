@@ -6,10 +6,14 @@ use App\Entities\Tag;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class TagRepository
+ * @package App\Repositories
+ *
+ * @property EntityManager $em
+ */
 class TagRepository extends EntityRepository
 {
-    private $entityName = 'App\Entities\Tag';
-
     /** @var EntityManager $em */
     private $em;
 
@@ -20,58 +24,60 @@ class TagRepository extends EntityRepository
     }
 
     /**
-     * @param $request
+     * Add tag
+     *
+     * @param array $request
      * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function add($request)
+    public function add(array $request)
     {
-        /** @var Tag $tag */
         $tag = new Tag();
         $tag->setTitle($request['title']);
         $tag->setSlug($request['title']);
 
         $this->em->persist($tag);
-        $this->em->flush();
     }
 
     /**
-     * @param $request
-     * @param $id
+     *  Update tag
+     *
+     * @param array $request
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function update($request, $id)
+    public function update(array $request, int $id)
     {
-        $tag = $this->em->find($this->entityName, $id);
+        $tag = $this->em->find(Tag::class, $id);
         $tag->setTitle($request['title']);
         $tag->setSlug($request['title']);
 
         $this->em->persist($tag);
-        $this->em->flush();
     }
 
     /**
-     * @param $id
+     *  Delete tag
+     *
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function delete($id)
+    public function delete(int $id)
     {
-        $tag = $this->em->find($this->entityName, $id);
-
+        $tag = $this->em->find(Tag::class, $id);
         $this->em->remove($tag);
-        $this->em->flush();
     }
 
     /**
+     * Select id and title tags
+     *
      * @return mixed
      */
     public function selectIdAndTitle()
     {
-        $query = 'select c.id, c.title from App\Entities\Tag c';
+        $query = 'SELECT c.id, c.title FROM App\Entities\Tag c';
         return $this->em->createQuery($query)
             ->getResult();
     }

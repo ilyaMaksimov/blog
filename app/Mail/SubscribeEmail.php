@@ -2,23 +2,24 @@
 
 namespace App\Mail;
 
+use App\Entities\Subscribe;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
+/**
+ * Class SubscribeEmail
+ * @package App\Mail
+ *
+ * @property Subscribe  $subscriber
+ */
 class SubscribeEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $subscriber;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($subscriber)
+    public function __construct(Subscribe $subscriber)
     {
         $this->subscriber = $subscriber;
     }

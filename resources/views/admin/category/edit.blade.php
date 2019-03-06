@@ -7,6 +7,7 @@
             <div>
                 <ol class="breadcrumb">
                     <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li><a href="{{ route('category.index') }}">Категории</a></li>
                     <li class="active">Изменение категории</li>
                 </ol>
             </div>

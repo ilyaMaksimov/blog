@@ -87,8 +87,8 @@
                         <!-- checkbox -->
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" name="is_public" value="0" style='display:none;' checked>
-                                <input type="checkbox" name="is_public" class="minimal" value="1">
+                                <input type="checkbox" name="is_public" value="1" style='display:none;' checked>
+                                <input type="checkbox" name="is_public" class="minimal" value="0">
                             </label>
                             <label>
                                 Черновик

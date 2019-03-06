@@ -1,12 +1,8 @@
-@component('mail::message')
-    # Email Confirmation
+Для подтверждения своей почты нажмите на кнопку:
 
-    Для подтверждения своей почты нажмите на кнопку:
-
-    @component('mail::button', ['url' => route('subscribe.verify', ['token' => $subscriber->getToken()])])
-        Подтвердить емейл
-    @endcomponent
-
-    С уважением,
-    Илья Максимов
+@component('mail::button', ['url' => route('subscribe.verify', ['token' => $subscriber->getToken()])])
+    Подтвердить емейл
 @endcomponent
+
+С уважением,
+Илья Максимов

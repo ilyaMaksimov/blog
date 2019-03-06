@@ -9,10 +9,14 @@ use Doctrine\ORM\EntityRepository;
 use App\Entities\Comment;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class CommentRepository
+ * @package App\Repositories
+ *
+ * @property EntityManager $em
+ */
 class CommentRepository extends EntityRepository
 {
-    const ENTITY_NAME = 'App\Entities\Comment';
-
     /** @var EntityManager $em */
     private $em;
 
@@ -23,11 +27,14 @@ class CommentRepository extends EntityRepository
     }
 
     /**
-     * @param $request
+     * Add comment
+     *
+     * @param array $request
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function add($request)
+    public function add(array $request)
     {
         /** @var Comment $tag */
         $comment = new Comment();
@@ -41,38 +48,44 @@ class CommentRepository extends EntityRepository
         $comment->setDate(now());
 
         $this->em->persist($comment);
-        $this->em->flush();
     }
 
     /**
-     * @param $id
+     * Delete comment
+     *
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function delete($id)
+    public function delete(int $id)
     {
-        $comment = $this->em->find(self::ENTITY_NAME, $id);
-
+        $comment = $this->em->find(Comment::class, $id);
         $this->em->remove($comment);
-        $this->em->flush();
     }
 
     /**
-     * @param $id
+     * Change comment status
+     *
+     * @param int $id
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function toggleStatus($id)
+    public function toggleStatus(int $id)
     {
-        $comment = $this->em->find(self::ENTITY_NAME, $id);
+        $comment = $this->em->find(Comment::class, $id);
         $comment->toggleStatus();
 
         $this->em->persist($comment);
-        $this->em->flush();
     }
 
+    /**
+     * Find comments by status
+     *
+     * @param bool $status
+     * @return mixed
+     */
     public function findByStatus(bool $status)
     {
         $query = "SELECT c FROM App\Entities\Comment c WHERE c.status = :status";

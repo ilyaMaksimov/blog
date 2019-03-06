@@ -7,6 +7,7 @@
             <div>
                 <ol class="breadcrumb">
                     <li><a href="{{ route('dashboard') }}">Home</a></li>
+                    <li><a href="{{ route('tag.index') }}">Теги</a></li>
                     <li class="active">Добавление тега</li>
                 </ol>
             </div>
