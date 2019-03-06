@@ -63,9 +63,9 @@ class PostController extends Controller
     {
         $posts = $this->postRepository->findBySlugCategoryWithPagination($slug, 2, $request['page'] ?? 1);
 
-        if ($posts->isEmpty()) {
+        /*if ($posts->isEmpty()) {
             throw new NotFoundHttpException('Такой категории не существует!');
-        }
+        }*/
 
         return view('frontend.post.list', compact('posts'));
     }

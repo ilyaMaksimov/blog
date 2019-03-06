@@ -84,20 +84,11 @@
 
                                         </div>
                                     @endif
-
-                                    {{-- <div class="text-right">
-                                    <a href="{{route('frontend.comment.delete', $comment->getId() )}}">Удалить</a>
-                                    </div>
-     --}}
                                     <div class="comment-text">
                                         <h5>{{$comment->getAuthor()->getName()}}</h5>
                                         <p class="comment-date">
-                                            {{--  {{$comment->created_at->diffForHumans()}}--}}
-                                            {{--  {{$comment->created_at->diffForHumans()}}--}}
-                                            Время
+                                            {!! $comment->getDate() !!}
                                         </p>
-
-
                                         <p class="para">{{$comment->getText()}}</p>
                                     </div>
                                 </div>

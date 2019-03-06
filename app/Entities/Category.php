@@ -28,32 +28,48 @@ class Category
      */
     protected $post;
 
+
     public function getPost()
     {
         $this->post;
     }
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
-    public function setTitle($title)
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
 
+    /**
+     * @return string
+     */
     public function getSlug()
     {
         return $this->slug;
     }
 
-    public function setSlug($slug)
+    /**
+     * @param $slug
+     */
+    public function setSlug(string $slug)
     {
         $this->slug = str_slug($slug);
     }

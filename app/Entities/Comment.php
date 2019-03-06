@@ -130,9 +130,9 @@ class Comment
     /**
      * @return \DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate()
     {
-        return $this->date;
+        return $this->date->format('d-m-Y');
     }
 
     /**
@@ -145,7 +145,6 @@ class Comment
 
     public function toggleStatus(): void
     {
-        // dd($this->status);
         if ($this->status == self::STATUS_WAITING_VERIFICATION) {
             $this->status = self::STATUS_PUBLIC;
         } else {
