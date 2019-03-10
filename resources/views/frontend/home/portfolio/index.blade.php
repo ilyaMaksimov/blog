@@ -5,6 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
+                    <h3 class="text-center">Портфолио</h3>
                     <div class="row">
                         {{--   @foreach($posts as $post)--}}
                         <div class="col-md-6">
@@ -35,10 +36,7 @@
                                             <br>
                                             <i class="fa fa-check-circle" style="color:green" aria-hidden="true"></i>
                                             ORM Doctrine2
-                                            <br>
-                                            <i class="fa fa-check-circle" style="color:green" aria-hidden="true"></i>
-                                            Nginx
-                                            <br>
+
                                         </div>
                                         <hr>
                                         <div class="social-share">
@@ -50,7 +48,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="ion-social-github" href="#">
+                                                    <a class="ion-social-github"  target="_blank" href="https://github.com/ilyaMaksimov/blog">
                                                         <i class="fa fa-github"></i>
                                                     </a>
                                                 </li>
@@ -82,14 +80,11 @@
                                             PHP 5.6
                                             <br>
                                             <i class="fa fa-check-circle" style="color:green" aria-hidden="true"></i>
-                                            MySQL
+                                            MySQL 5.6
                                             <br>
                                             <i class="fa fa-check-circle" style="color:green" aria-hidden="true"></i>
                                             Самописный фреймворк
-                                            <br>
-                                            <i class="fa fa-check-circle" style="color:green" aria-hidden="true"></i>
-                                            Apache
-                                            <br>
+
                                         </div>
                                         <hr>
                                         <div class="social-share">
@@ -101,7 +96,7 @@
                                                     </a>
                                                 </li>
                                                 {{--<li>
-                                                    <a class="ion-social-github" href="#">
+                                                    <a class="ion-social-github" target="_blank" href="https://github.com/ilyaMaksimov/blog">
                                                         <i class="fa fa-github"></i>
                                                     </a>
                                                 </li>--}}
@@ -116,15 +111,15 @@
                             <article class="post post-grid">
                                 <div class="post-thumb">
                                     <a href="http://maksimov-ilya.ru/">
-                                        <img src="{{\App\Components\Image::getPath('shop.png')}}" alt=""></a>
-                                    <a target="_blank" href="http://maksimov-ilya.ru/" class="post-thumb-overlay text-center">
+                                        <img src="{{\App\Components\Image::getPath('phone.png')}}" alt=""></a>
+                                    <a target="_blank" href="https://shop-phone.maksimov-ilya.ru/" class="post-thumb-overlay text-center">
                                         <div class="text-uppercase text-center">Посмотреть</div>
                                     </a>
                                 </div>
                                 <div class="post-content">
                                     <header class="entry-header text-center text-uppercase">
                                         <h1 class="entry-title">
-                                            <a target="_blank" href="http://maksimov-ilya.ru/">Интернет магазин сотовых телефонов</a>
+                                            <a target="_blank" href="https://shop-phone.maksimov-ilya.ru/">Интернет магазин сотовых телефонов</a>
                                         </h1>
                                     </header>
                                     <div class="entry-content">
@@ -133,26 +128,19 @@
                                             PHP 5.6
                                             <br>
                                             <i class="fa fa-check-circle" style="color:green" aria-hidden="true"></i>
-                                            MySQL
-                                            <br>
-                                            <i class="fa fa-check-circle" style="color:green" aria-hidden="true"></i>
-                                            Apache
-                                            <br>
+                                            MySQL 5.6
+
                                         </div>
                                         <hr>
                                         <div class="social-share">
 
                                             <ul class="text-center pull-right">
                                                 <li>
-                                                    <a class="s-instagram" target="_blank" href="http://maksimov-ilya.ru/">
+                                                    <a class="s-instagram" target="_blank" href="https://shop-phone.maksimov-ilya.ru/">
                                                         <i class="fa fa-share" aria-hidden="true"></i>
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a class="ion-social-github" href="#">
-                                                        <i class="fa fa-github"></i>
-                                                    </a>
-                                                </li>
+
                                             </ul>
                                         </div>
                                     </div>

@@ -1,6 +1,6 @@
 <?php
 Route::group(['namespace' => 'Frontend'], function () {
-    Route::get('/', 'PostController@index');
+    Route::get('/', 'PostController@index')->name('blog');
     Route::get('/post/{slug}', 'PostController@show')->name('frontend.post.show');
     Route::get('/category/{slug}', 'PostController@category')->name('frontend.category.show');
     Route::get('/tag/{slug}', 'PostController@tag')->name('frontend.tag.show');
@@ -16,6 +16,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     Route::get('/portfolio', 'HomeController@portfolio')->name('portfolio');
     Route::get('/about-me', 'HomeController@aboutMe')->name('aboutMe');
+    Route::get('/contact', 'HomeController@contact')->name('contact');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {

@@ -44,8 +44,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav text-uppercase">
+                    <li><a href="{{route('blog')}}">Blog </a></li>
                     <li><a href="{{route('aboutMe')}}">ABOUT ME </a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="{{route('contact')}}">CONTACT</a></li>
                     <li><a href="{{route('portfolio')}}">PORTFOLIO</a></li>
                 </ul>
 
